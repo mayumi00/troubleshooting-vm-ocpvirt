@@ -21,7 +21,7 @@
 
 1. 割り当てられたユーザーアカウントを使用して OpenShift コンソールにログインします。
 
-リンク:{openshift_console_url}[{openshift_console_url}^]
+link:{openshift_console_url}[{openshift_console_url}^]
 
 .ユーザー名
 [source,sh,role=execute,subs="attributes"]
