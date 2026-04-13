@@ -1,25 +1,25 @@
 [#check]
-= Check your work on exercise 3
+= 演習3の解答を確認してください
 
-To check you work execute the `lab grade`.
+解答を確認するには、`lab grade` コマンドを実行してください。
 
-.Grading the exercise
+.演習の採点
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise3
 ----
 
-If you encounter an issue with this exercise and would like assistance, simply run the `lab fix` command to resolve it.
+この演習で問題が発生し、サポートが必要な場合は、`lab fix` コマンドを実行して解決してください。
 
-.Resolving the exercise
+.演習の解決
 [source,sh,role=execute,subs="attributes"]
 ----
 lab fix exercise3
 ----
 
-Please run the `lab clean script` before proceeding to the next exercise.
+次の演習に進む前に、`lab clean script` を実行してください。
 
-.Cleaning the exercise
+.演習のクリーンアップ
 [source,sh,role=execute,subs="attributes"]
 ----
 lab clean exercise3

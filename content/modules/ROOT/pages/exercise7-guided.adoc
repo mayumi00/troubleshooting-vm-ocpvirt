@@ -1,11 +1,12 @@
 [#fix]
-= Fix Virtual Machine snapshot restore buttons are grayed out
+= 仮想マシンのスナップショット復元ボタンがグレー表示される問題を修正する
 
-== Scenario
 
-In this scenario, a Virtual Machine named `exercise7` is currently in the `Running` state and has an existing snapshot the user wants to restore. However, the user has noticed that the snapshot's buttons are grayed out, making it impossible to proceed with the restoration.
+== シナリオ
 
-- The button on Virtual Machine
+このシナリオでは、`exercise7` という名前の仮想マシンが現在 `Running` 状態にあり、ユーザーが復元したい既存のスナップショットが存在します。しかし、ユーザーはスナップショットのボタンがグレー表示になっていることに気づき、復元を実行できない状態になっています。
+
+- 仮想マシン上のボタン
 
 ++++
 <a href="_images/exercise7/01-restore-button.png" target="_blank" class="popup">
@@ -15,7 +16,7 @@ image::exercise7/01-restore-button.png[]
 </a>
 ++++
 
-- The snapshot button
+- スナップショットボタン
 
 ++++
 <a href="_images/exercise7/02-restore-button.png" target="_blank" class="popup">
@@ -25,33 +26,33 @@ image::exercise7/02-restore-button.png[]
 </a>
 ++++
 
-Your task is to investigate the steps taken by the user to restore the snapshot and resolve the issue.
+あなたの任務は、ユーザーがスナップショットを復元するために行った手順を調査し、問題を解決することです。
 
-NOTE: The objective is to successfully restore the snapshot of the Virtual Machine `exercise7`.
+NOTE: 目的は、仮想マシン `exercise7` のスナップショットを正常に復元することです。
 
 
-The steps to fix exercise7 are:
+演習7の修正​​手順は以下のとおりです。
 
-=== Console
+=== コンソール
 
-1. Login to OpenShift console using the assigned user account.
+1. 割り当てられたユーザーアカウントを使用してOpenShiftコンソールにログインします。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to virtualization -> Virtual Machines - select project for the assigned user account
+2. virtualization -> Virtual Machines に移動し 割り当てられたユーザーアカウントのプロジェクトを選択してください。
 
 ++++
 <a href="_images/exercise7/07-break03.png" target="_blank" class="popup">
@@ -62,7 +63,7 @@ image::exercise7/07-break03.png[]
 ++++
 
 [start=3]
-3. Stop the `exercise7` virtual machine
+3. `exercise7`仮想マシンを停止します。
 
 ++++
 <a href="_images/exercise7/07-break04.png" target="_blank" class="popup">
@@ -73,7 +74,7 @@ image::exercise7/07-break04.png[]
 ++++
 
 [start=4]
-4. Click on `exercise7` virtual machines and `Snapshot` tab.
+4. `exercise7` 仮想マシンをクリックし、`Snapshot` タブを選択します。
 
 ++++
 <a href="_images/exercise7/07-break05.png" target="_blank" class="popup">
@@ -84,7 +85,7 @@ image::exercise7/07-break05.png[]
 ++++
 
 [start=5]
-5. On snapshot click `Restore VirtualMachine from snapshot`
+5. スナップショット上で `Restore VirtualMachine from snapshot` をクリックします。
 
 ++++
 <a href="_images/exercise7/07-break06.png" target="_blank" class="popup">
@@ -95,7 +96,7 @@ image::exercise7/07-break06.png[]
 ++++
 
 [start=6]
-6. Click `Restore`
+6. `Restore` をクリックします。
 
 ++++
 <a href="_images/exercise7/07-break07.png" target="_blank" class="popup">
@@ -106,7 +107,7 @@ image::exercise7/07-break07.png[]
 ++++
 
 [start=7]
-7. Check the virtual machine snapshot has been restored.
+7. 仮想マシンのスナップショットが復元されたことを確認してください。.
 
 ++++
 <a href="_images/exercise7/07-break08.png" target="_blank" class="popup">

@@ -1,9 +1,9 @@
 [#scenario]
-= Application is inaccessible externally
+= アプリケーションが外部からアクセスできません
 
-== Scenario
+== シナリオ
 
-The application runs on a virtual machine `exercise3` and is intended to be accessible externally through link:https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}[https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}^], but it’s currently facing connectivity issues.
+このアプリケーションは仮想マシン `exercise3` 上で動作し、 link:https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}[https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}^] を介して外部からアクセスできるように設計されているが、現在接続の問題が発生している。
 
 ++++
 <a href="_images/exercise3/03-step2.png" target="_blank" class="popup">
@@ -13,38 +13,38 @@ image::exercise3/03-step2.png[]
 </a>
 ++++
 
-NOTE: The primary goal in this scenario is to investigate the cause of the issue by examining the OpenShift network components involved in accessing the application within the OpenShift cluster.
+NOTE: このシナリオにおける主な目的は、OpenShiftクラスタ内のアプリケーションへのアクセスに関わるOpenShiftネットワークコンポーネントを調査することで、問題の原因を究明することです。
 
-== Executing the lab script
+== ラボスクリプトの実行
 
-In this exercise setup, ensure you are logged in to OpenShift cluster as user `{user}`.
+この演習の設定では、ユーザー `{user}` として OpenShift クラスターにログインしていることを確認してください。
 
-.OpenShift login command
+.OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
-Once connected to the OCP cluster, run the command to break the lab.
+OCPクラスターに接続したら、ラボを中断するコマンドを実行します。
 
-.Breaking the exercise
+.演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise3
 ----
 
-=== Console
-After the break, you can log in to the OpenShift web console using your username and password or continue using the `oc` Command line at bastion to begin the troubleshooting process.
+=== コンソール
+中断後、ユーザー名とパスワードを使用してOpenShift Webコンソールにログインするか、踏み台サーバーで`oc`コマンドラインを使用してトラブルシューティングプロセスを開始できます。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}

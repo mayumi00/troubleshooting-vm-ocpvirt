@@ -1,9 +1,9 @@
 [#fix]
-= Fix Virtual Machine is not starting
+= 仮想マシンが起動しない場合の対処法
 
-== Scenario
+== シナリオ
 
-The user tried to deploy and run a virtual machine and is facing an issue.
+ユーザーが仮想マシンをデプロイして実行しようとしたところ、問題が発生しました。
 
 ++++
 <a href="_images/exercise2/01-step2.png" target="_blank" class="popup">
@@ -13,31 +13,32 @@ image::exercise2/01-step2.png[]
 </a>
 ++++
 
+NOTE: このシナリオの主な目的は、障害の原因を調査し、仮想マシン `exercise2` を `Running` 状態に戻すための是正措置を講じることです。
 
-NOTE: The primary goal in this scenario is to investigate the cause of the failure and take corrective action to get `exercise2` virtual machine back into the `Running` state.
 
-The steps to fix exercise2 are:
+演習2の修正手順は以下のとおりです。
 
-=== Console
+=== コンソール
 
-1. Login to Openshift console using the assigned user account
+1. 割り当てられたユーザーアカウントを使用してOpenShiftコンソールにログインします。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to Virtualization - Virtual Machines and check the VM status.
+2. Virtualization - Virtual Machines に移動し、VMの状態を確認します。
+
 
 ++++
 <a href="_images/exercise2/01-step2.png" target="_blank" class="popup">
@@ -48,7 +49,7 @@ image::exercise2/01-step2.png[]
 ++++
 
 [start=3]
-3. Check the Virtual Machine is failing with error `ErrorUnschedulable`.
+3. 仮想マシンがエラー `ErrorUnschedulable` で失敗していることを確認してください。
 
 ++++
 <a href="_images/exercise2/02-step3.png" target="_blank" class="popup">
@@ -59,7 +60,7 @@ image::exercise2/02-step3.png[]
 ++++
 
 [start=4]
-4. Go to tab `YAML` and check the status of the Virtual Machine. It is failing with error message: 
+4.  `YAML` タブに移動し、仮想マシンの状態を確認してください。エラーメッセージが表示されて失敗しています。
 
 [source]
 ----
@@ -67,7 +68,7 @@ message: '0/6 nodes are available: 3 node(s) didn''t match Pod''s node affinity/
 ----
 
 [start=5]
-5. Check the `NodeSelector` and `Tolerations` assigned to this virtual machine. 
+5. この仮想マシンに割り当てられている `NodeSelector` と `Tolerations` を確認します。
 
 [source, yaml]
 ----
@@ -80,14 +81,14 @@ message: '0/6 nodes are available: 3 node(s) didn''t match Pod''s node affinity/
 ----
 
 [start=6]
-6. These `NodeSelectors` and `Tolerations` refer to nodes that do not match those in the cluster. Remove them.
+6. これらの `NodeSelectors` と `Tolerations` は、クラスタ内のノードと一致しないノードを参照しています。これらを削除してください。
 
 [start=7]
-7. Restart the virtual machine to apply the changes. 
+7. 変更を適用するために仮想マシンを再起動してください。
 
 
 [start=8]
-8. Wait for the virtual machine to start and check that now the virtual machine is in `Running` state. 
+8. 仮想マシンが起動するまで待ち、仮想マシンが` Running` 状態になっていることを確認してください。
 
 ++++
 <a href="_images/exercise2/03-step8.png" target="_blank" class="popup">
@@ -97,24 +98,24 @@ image::exercise2/03-step8.png[]
 </a>
 ++++
 
-.Run grade to validate the exercise
+演習を検証するには、`grade` コマンドを実行してください。
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise2
 ----
 
-=== Command line (CLI)
+=== コマンドラインインターフェース (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドで OpenShift サーバー API にログインしてください。
 
-.OpenShift login command
+OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられたネームスペース {user} に移動してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -122,7 +123,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. Check there is a virtual machine running in this namespace and it's status. The output should be similar to the following one: 
+3. このネームスペースで仮想マシンが実行されていること、およびそのステータスを確認してください。出力は以下のようになるはずです。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -138,7 +139,7 @@ virtualmachine.kubevirt.io/exercise2   20s   ErrorUnschedulable   False
 ----
 
 [start=4]
-4. Check which the the Virtual Machine status to get more details about the error:
+4. 仮想マシンの状態を確認して、エラーの詳細を取得します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -174,7 +175,7 @@ Status:
 ----
 
 [start=5]
-5. Inspect the virtual machine and check the `NodeSelector` and `Tolerations` assigned to this virtual machine. 
+5. 仮想マシンを検査し、この仮想マシンに割り当てられている `NodeSelector` と `Tolerations` を確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -192,7 +193,7 @@ oc get vm exercise2 -oyaml
 ----
 
 [start=6]
-6. These `NodeSelectors` and `Tolerations` refer to nodes that do not match those in the cluster. Edit the virtual machine configuration file and remove them.
+6. これらの `NodeSelectors` と `Tolerations` は、クラスタ内のノードと一致しないノードを参照しています。仮想マシンの設定ファイルを編集して、これらを削除してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -200,7 +201,7 @@ oc edit vm exercise2
 ----
 
 [start=7]
-7. Restart the virtual machine
+7. 仮想マシンを再起動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -208,7 +209,7 @@ virtctl restart exercise2
 ----
 
 [start=8]
-8. Wait until the virtual machine is started and make sure it is in `running` state
+8. 仮想マシンが起動するまで待ち、`running` 状態になっていることを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -223,6 +224,6 @@ NAME                                   AGE    STATUS    READY
 virtualmachine.kubevirt.io/exercise2   5m9s   Running   True
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that virtual machines cannot be started if a `nodeSelector` is defined and no nodes match the specified label in the `nodeSelector`.
+この演習では、`nodeSelector` が定義されていて、その `nodeSelector` で指定されたラベルに一致するノードが存在しない場合、仮想マシンを起動できないことを学びました。

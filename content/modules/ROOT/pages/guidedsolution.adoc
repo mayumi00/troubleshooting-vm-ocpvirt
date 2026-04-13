@@ -1,9 +1,12 @@
 [#guidedsolution]
-=  Guided Solutions
+= ガイド付きソリューション
 
-This section is designed to provide a comprehensive, step-by-step walkthrough of the solutions to the exercises in this lab.
+このセクションでは、このラボの演習問題の解決方法を、ステップバイステップで包括的に解説します。
 
-* The exercise resolution will be approached through the OpenShift Web Console and the `oc` client. 
-** The GUI allows users to interact with resources and perform tasks more visually and is ideal for those who prefer point-and-click actions. 
-** The oc client provides a command line interface, giving users more flexibility and control to execute commands and automate tasks. 
-* Both methods will ensure that the problem has been solved.
+* 演習問題の解決には、OpenShift Webコンソールと `oc` クライアントを使用します。
+
+** GUIを使用すると、リソースを視覚的に操作し、タスクを実行できます。ポイント＆クリック操作を好むユーザーに最適です。
+
+** ocクライアントはコマンドラインインターフェースを提供し、コマンドの実行やタスクの自動化において、より柔軟かつ制御された操作を可能にします。
+
+* どちらの方法でも、問題が解決されることを確認できます。

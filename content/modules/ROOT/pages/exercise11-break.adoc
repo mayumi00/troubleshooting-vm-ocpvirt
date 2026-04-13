@@ -1,11 +1,12 @@
 [#scenario]
-= Enabling VM communication - Part 2
+= 仮想マシン間の通信を有効にする - パート2
 
-== Scenario
+== シナリオ
 
-The virtual machines `exercise11-a` and `exercise11-b` are operational and with their IP addresses configured. However, they are not communicating with each other as expected.
+仮想マシン `exercise11-a` と `exercise11-b` は稼働しており、IPアドレスも設定済みです。しかし、想定どおりに相互に通信できていません。
 
-- Virtual Machine `exercise11-a` IP's addresses
+
+- 仮想マシン `exercise11-a` の IP アドレス
 
 ++++
 <a href="_images/exercise11/11-break1.png" target="_blank" class="popup">
@@ -15,7 +16,7 @@ image::exercise11/11-break1.png[]
 </a>
 ++++
 
-- Virtual Machine `exercise11-b` IP's addresses
+- 仮想マシン `exercise11-b` の IP アドレス
 
 ++++
 <a href="_images/exercise11/11-break2.png" target="_blank" class="popup">
@@ -25,7 +26,8 @@ image::exercise11/11-break2.png[]
 </a>
 ++++
 
-- ping from `exercise11-a` to `exercise11-b` is not working.
+- `exercise11-a` から `exercise11-b` への ping が機能していません。
+
 
 ++++
 <a href="_images/exercise11/11-break3.png" target="_blank" class="popup">
@@ -37,41 +39,43 @@ image::exercise11/11-break3.png[]
 
 [NOTE]
 ====
-* Your task is to identify and troubleshoot the issue preventing communication between the VMs. Resolve it to restore connectivity.
-* You can recreate any virtual machine if needed
-* Do not edit nothing inside the guest OS
+* VM間の通信を妨げている問題を特定し、トラブルシューティングしてください。接続を回復するために問題を解決してください。
+
+* 必要に応じて、任意の仮想マシンを再作成できます。
+* ゲストOS内の設定は一切変更しないでください。
 ====
 
-== Executing the lab script
+== ラボスクリプトの実行
 
-In this exercise setup, ensure you are logged in to OpenShift cluster as user `{user}`.
+この演習では、ユーザー`{user}`としてOpenShiftクラスタにログインしていることを確認してください。
 
-.OpenShift login command
+.OpenShift loginコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
-Once connected to the OCP cluster, run the command to break the lab.
+OCPクラスタに接続したら、ラボを中断するコマンドを実行してください。
 
-.Breaking the exercise
+
+演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise11
 ----
 
-=== Console
-After the break, you can log in to the OpenShift web console using your username and password or continue using the `oc` Command line at bastion to begin the troubleshooting process.
+=== コンソール
+休憩後、ユーザー名とパスワードを使用してOpenShift Webコンソールにログインするか、踏み台サーバーの`oc`コマンドラインを使用してトラブルシューティングプロセスを開始できます。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}

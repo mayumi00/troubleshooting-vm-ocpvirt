@@ -1,9 +1,9 @@
 [#scenario]
-= Enabling VM communication - Part 1
+= VM間の通信を有効にする - パート1
 
-== Scenario
+== シナリオ
 
-The virtual machines `exercise10-a` and `exercise10-b` are operational and with their IP addresses correctly configured. However, they are not communicating with each other as expected.
+仮想マシン `exercise10-a` と `exercise10-b` は稼働しており、IPアドレスも正しく設定されています。しかし、期待どおりに相互に通信できていません。
 
 ++++
 <a href="_images/exercise10/10-break01.png" target="_blank" class="popup">
@@ -15,40 +15,44 @@ image::exercise10/10-break01.png[]
 
 [NOTE]
 ====
-* Your task is to identify and troubleshoot the issue preventing communication between the VMs. 
-* Resolve it to restore connectivity.
+* VM間の通信を妨げている問題を特定し、トラブルシューティングを行うのがあなたのタスクです。
+
+* 接続を回復するために問題を解決してください。
+
 ====
 
-== Executing the lab script
+== ラボスクリプトの実行
 
-In this exercise setup, ensure you are logged in to OpenShift cluster as user `{user}`.
+この演習では、ユーザー `{user}` として OpenShift クラスターにログインしていることを確認してください。
 
-.OpenShift login command
+
+.OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
-Once connected to the OCP cluster, run the command to break the lab.
+OCP クラスタに接続したら、コマンドを実行してラボを中断します。
 
-.Breaking the exercise
+.演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise10
 ----
 
-=== Console
-After the break, you can log in to the OpenShift web console using your username and password or continue using the `oc` Command line at bastion to begin the troubleshooting process.
+=== コンソール
+中断後、ユーザー名とパスワードを使用して OpenShift Web コンソールにログインするか、踏み台サーバーの `oc` コマンドラインを使用してトラブルシューティングプロセスを開始できます。
+
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}

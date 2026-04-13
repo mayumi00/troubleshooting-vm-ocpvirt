@@ -1,38 +1,40 @@
 [#fix]
-= Add a new SSH key to a virtual machine
+= 仮想マシンに新しいSSHキーを追加する
 
-== Scenario
+== シナリオ
 
-In this scenario, an RHEL 9-based Virtual Machine (VM) named `exercise8` is currently in the `Running` state. The team has identified that the SSH key created by this VM has been lost. To regain SSH access, a new SSH key must be added to the VM.  
+このシナリオでは、`exercise8`という名前のRHEL 9ベースの仮想マシン（VM）が現在`Running`状態です。チームは、このVMで作成されたSSHキーが失われたことを確認しました。SSHアクセスを回復するには、VMに新しいSSHキーを追加する必要があります。
 
-=== Constraints
-- Access to the VM via the console is not possible because the user `lab-user` does not have password defined.
-- The new SSH key to be added is located at `/home/{user}/.ssh/id_rsa.pub`.
+=== 制約
+- ユーザー`lab-user`にパスワードが設定されていないため、コンソール経由でVMにアクセスすることはできません。
 
-=== Task
-Perform the necessary steps to add the specified SSH key to the `exercise8` VM to restore remote access.  
+- 追加する新しいSSHキーは`/home/{user}/.ssh/id_rsa.pub`にあります。
 
-NOTE: The primary goal is to get access to the `exercise8` via SSH virtual machine restored.
+=== タスク
+指定されたSSHキーを`exercise8` VMに追加し、リモートアクセスを復元するために必要な手順を実行してください。
 
-TIP: Use `virtctl ssh lab-user@exercise8` command to test the access.
+NOTE: 主な目的は、SSH経由で仮想マシン`exercise8`へのアクセスを復元することです。
 
-The steps to fix exercise8 are:
 
-=== Console
-NOTE: To solve this exercise, the command line (CLI) is recommended
+TIP: アクセス権限を確認するには、`virtctl ssh lab-user@exercise8` コマンドを使用してください。
 
-=== Command line (CLI)
+演習8の解決手順は以下のとおりです。
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+=== コンソール
+NOTE: この演習を解決するには、コマンドラインインターフェース（CLI）の使用を推奨します。
 
-.OpenShift login command
+=== コマンドラインインターフェース（CLI）
+
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して`oc`コマンドでOpenShiftサーバーAPIにログインします。
+
+.OpenShift login コマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられたネームスペース{user}に移動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -40,7 +42,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. Check that ssh is not working
+3. sshが機能していないことを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -56,7 +58,7 @@ exit status 255
 ----
 
 [start=4]
-4. Add the user SSH key to `exercise8` virtual machine using `virtctl`
+4. `virtctl` を使用して、`exercise8` 仮想マシンにユーザーの SSH キーを追加します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -66,7 +68,8 @@ virtctl credentials add-ssh-key \
 ----
 
 [start=5]
-5. the output will be.
+5. 出力は以下のようになります。
+
 
 [source]
 ----
@@ -74,14 +77,14 @@ virtctl credentials add-ssh-key \
 ----
 
 [start=6]
-6. Get the pod name
+6. ポッド名を取得します
 
 [source,sh,role=execute,subs="attributes"]
 PODNAME=$(oc get pods -l kubevirt.io/domain=exercise8 \
 -o NAME -n namespace-{user})
 
 [start=7]
-7. Check the logs 
+7. ログを確認します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -89,7 +92,7 @@ oc logs $PODNAME -n namespace-{user} -f --tail 10
 ----
 
 [start=8]
-8. and wait for the message on virtual machine pod
+8. 仮想マシンポッドからのメッセージを待ちます
 
 [source]
 ----
@@ -97,13 +100,13 @@ oc logs $PODNAME -n namespace-{user} -f --tail 10
 ----
 
 [start=9]
-9. Test the SSH access
+9. SSHアクセスをテストします
 
 [source,sh,role=execute,subs="attributes"]
 ----
 virtctl ssh lab-user@exercise8
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that you can use `virtctl` to add SSH keys to RHEL-9 virtual machines if dynamic credential support is enabled on the VM.
+この演習では、仮想マシンで動的認証情報サポートが有効になっている場合、`virtctl`を使用してRHEL-9仮想マシンにSSHキーを追加できることを学びました。

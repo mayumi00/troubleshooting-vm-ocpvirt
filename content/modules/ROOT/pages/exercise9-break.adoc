@@ -1,11 +1,11 @@
 [#scenario]
-= The VM doesn't stop when shutdown is run inside the guest OS
+= ゲストOS内でシャットダウンを実行してもVMが停止しない
 
-== Scenario
+== シナリオ
 
-The virtual machine `exercise9` does not remain powered off after the user executes the `shutdown -h now` command within the guest operating system. Instead, it powers back on automatically a few seconds after the shutdown process completes.
+仮想マシン`exercise9`は、ゲストOS内でユーザーが`shutdown -h now`コマンドを実行しても、シャットダウン状態を維持しません。シャットダウン処理完了後、数秒後に自動的に起動してしまいます。
 
-NOTE: You need to modify the Virtual Machine configuration to ensure it remains in a stopped state after shutdown using guest OS.
+NOTE: ゲストOSを使用してシャットダウンした後も仮想マシンが停止状態を維持するように、仮想マシンの設定を変更する必要があります。
 
 ++++
 <a href="_images/exercise9/09-break01.png" target="_blank" class="popup">
@@ -15,36 +15,38 @@ image::exercise9/09-break01.png[]
 </a>
 ++++
 
-== Executing the lab script
+== ラボスクリプトの実行
 
-In this exercise setup, ensure you are logged in to OpenShift cluster as user `{user}`.
+この演習では、ユーザー`{user}`としてOpenShiftクラスタにログインしていることを確認してください。
 
-.OpenShift login command
+
+.OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
-Once connected to the OCP cluster, run the command to break the lab.
+OCP クラスタに接続したら、コマンドを実行してラボを中断します。
 
-.Breaking the exercise
+.演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise9
 ----
 
-=== Console
-After the break, you can log in to the OpenShift web console using your username and password or continue using the `oc` Command line at bastion to begin the troubleshooting process.
+=== コンソール
+中断後、ユーザー名とパスワードを使用して OpenShift Web コンソールにログインするか、踏み台サーバーの `oc` コマンドラインを使用してトラブルシューティングプロセスを開始できます。
+
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}

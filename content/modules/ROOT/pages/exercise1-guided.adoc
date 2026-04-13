@@ -1,9 +1,9 @@
 [#fix]
-= Fix Virtual Machine is not starting
+= 仮想マシンが起動しない問題の解決
 
-== Scenario
+== シナリオ
 
-The user tried to start the VM, but the process failed to execute successfully.
+ユーザーが仮想マシンを起動しようとしましたが、プロセスが正常に実行されませんでした。
 
 ++++
 <a href="_images/exercise1/01-step2.png" target="_blank" class="popup">
@@ -13,30 +13,31 @@ image::exercise1/01-step2.png[]
 </a>
 ++++
 
-NOTE: The primary goal in this scenario is to investigate the cause of the failure and take corrective action to get `exercise1` virtual machine back into the `Running` state. The amount of memory available for the virtual machine in this lab is 8GB.
+NOTE: このシナリオの主な目的は、障害の原因を調査し、`exercise1` 仮想マシンを `Running` 状態に戻すための是正措置を講じることです。このラボでは、仮想マシンに利用可能なメモリ容量は 8GB です。
 
-The steps to fix the exercise1 are:
+exercise1 を修正する手順は以下のとおりです。
 
-=== Console
+=== コンソール
 
-1. Login to OpenShift console using the assigned user account.
+1. 割り当てられたユーザーアカウントを使用して OpenShift コンソールにログインします。
+
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to Virtualization - Virtual Machines and check the VM status.
+2. [Virtualization] - [Virtual Machines] に移動し、VM の状態を確認します。
 
 ++++
 <a href="_images/exercise1/01-step2.png" target="_blank" class="popup">
@@ -47,7 +48,8 @@ image::exercise1/01-step2.png[]
 ++++
 
 [start=3]
-3. Check the Virtual Machine is failing with error `ErrorUnschedulable`.
+3. 仮想マシンがエラー `ErrorUnschedulable` で失敗していることを確認します。
+
 
 ++++
 <a href="_images/exercise1/02-step3.png" target="_blank" class="popup">
@@ -58,7 +60,7 @@ image::exercise1/02-step3.png[]
 ++++
 
 [start=4]
-4. Go to tab `YAML` and check the status of the Virtual Machine. It is failing with error message: 
+4. `YAML` タブを開き、仮想マシンの状態を確認してください。以下のエラーメッセージが表示され、失敗しています。
 
 [source]
 ----
@@ -66,7 +68,7 @@ message: '0/6 nodes are available: 3 Insufficient memory, 3 node(s) had untolera
 ----
 
 [start=5]
-5. Check the memory assigned for the Virtual Machine in the field `spec.domain.memory.guest`.
+5. `spec.domain.memory.guest` フィールドで仮想マシンに割り当てられたメモリを確認します。
 
 
 [source, yaml]
@@ -75,8 +77,7 @@ message: '0/6 nodes are available: 3 Insufficient memory, 3 node(s) had untolera
           guest: 128Gi
 ----
 
-[start=6]
-6.  Edit the `yaml` file to change the assigned value to 8Gi.
+6. `yaml` ファイルを編集し、割り当て値を 8Gi に変更します。
 
 [source, yaml]
 ----
@@ -85,7 +86,7 @@ message: '0/6 nodes are available: 3 Insufficient memory, 3 node(s) had untolera
 ----
 
 [start=7]
-7. Save the updated configuration file and restart the virtual machine.
+7. 更新した設定ファイルを保存し、仮想マシンを再起動します。
 
 ++++
 <a href="_images/exercise1/03-step7.png" target="_blank" class="popup">
@@ -95,9 +96,8 @@ image::exercise1/03-step7.png[]
 </a>
 ++++
 
-
 [start=8]
-8. Wait for the virtual machine to start and check that now the virtual machine is in `Running` state. 
+8. 仮想マシンが起動するまで待ち、仮想マシンが「実行中」状態になっていることを確認します。
 
 ++++
 <a href="_images/exercise1/04-step8.png" target="_blank" class="popup">
@@ -107,24 +107,24 @@ image::exercise1/04-step8.png[]
 </a>
 ++++
 
-.Run grade to validate the exercise
+演習を検証するために、グレードを実行します。
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise1
 ----
 
-=== Command line (CLI)
+=== コマンドライン (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドで OpenShift サーバー API にログインします。
 
-.OpenShift login command
+.OpenShift login コマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられたネームスペース {user} に移動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -132,7 +132,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. Check there is a virtual machine running in this namespace and it's status. The output should be similar to the following one: 
+3. この名前空間で仮想マシンが実行されているかどうか、またその状態を確認してください。出力は以下のようになるはずです。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -148,7 +148,7 @@ virtualmachine.kubevirt.io/exercise1   85m   ErrorUnschedulable   False
 ----
 
 [start=4]
-4. Check which the the Virtual Machine status to get more details about the error:
+4. エラーの詳細を確認するために、仮想マシンの状態を確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -185,7 +185,7 @@ status:
 
 
 [start=5]
-5. Inspect the virtual machine and check the memory assigned to it in the field `spec.domain.memory.guest`.
+5. 仮想マシンを検査し、`spec.domain.memory.guest` フィールドで仮想マシンに割り当てられているメモリを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -200,7 +200,7 @@ oc get vm exercise1 -oyaml
 
 
 [start=6]
-6. Edit the virtual machine to assign 8Gi memory.
+6. 仮想マシンを編集して、8Giのメモリを割り当てます。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -214,7 +214,7 @@ oc edit vm exercise1
 ----
 
 [start=7]
-7. Restart the virtual machine
+7. 仮想マシンを再起動します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -222,7 +222,7 @@ virtctl restart exercise1
 ----
 
 [start=8]
-8. Wait until the virtual machine is started and make sure it is in `running` state
+8. 仮想マシンが起動するまで待ち、`running`状態になっていることを確認します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -237,7 +237,8 @@ NAME                                   AGE   STATUS    READY
 virtualmachine.kubevirt.io/exercise1   96m   Running   True
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that virtual machines running on OpenShift Virtualization operate similarly to pods. 
-Specifically, when configuring resource `requests` for CPU or memory, you cannot allocate more resources to a virtual machine than are available on a single node.
+この演習では、OpenShift Virtualization 上で動作する仮想マシンは、Pod と同様の動作をすることを学びました。
+
+具体的には、CPU やメモリのリソース要求を設定する際、単一ノードで利用可能なリソースよりも多くのリソースを仮想マシンに割り当てることはできません。

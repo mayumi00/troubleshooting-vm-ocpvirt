@@ -1,9 +1,9 @@
 [#fix]
-= Fix Application is inaccessible externally
+= アプリケーションが外部からアクセスできない問題を修正する
 
-== Scenario
+== シナリオ
 
-The application runs on a virtual machine `exercise3` and is intended to be accessible externally through link:https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}[https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}^], but it’s currently facing connectivity issues.
+このアプリケーションは仮想マシン `exercise3` 上で動作し、link:https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}[https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}^] を介して外部からアクセスできるように設計されているが、現在接続の問題が発生している。
 
 ++++
 <a href="_image::exercise3/03-step2.png" target="_blank" class="popup">
@@ -13,31 +13,30 @@ image::exercise3/03-step2.png[]
 </a>
 ++++
 
-NOTE: The primary goal in this scenario is to investigate the cause of the issue by examining the OpenShift network components involved in accessing the application within the OpenShift cluster.
+NOTE: このシナリオにおける主な目的は、OpenShiftクラスタ内のアプリケーションへのアクセスに関わるOpenShiftネットワークコンポーネントを調査することで、問題の原因を究明することです。
 
-The steps to fix exercise3 are:
+演習3の修正手順は以下のとおりです。
 
-=== Console
+=== コンソール
 
-
-1. Login to OpenShift console using the assigned user account.
+1. 割り当てられたユーザーアカウントを使用してOpenShiftコンソールにログインします。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to Virtualization - VirtualMachines - Select the project for the assigned user account - look for VM called `exercise3`.
+2. [Virtualization] - [VirtualMachines] に移動し、割り当てられたユーザーアカウントのプロジェクトを選択します。`exercise3` という名前の仮想マシンを探してください。
 
 ++++
 <a href="_image::exercise3/01-step2.png" target="_blank" class="popup">
@@ -48,7 +47,7 @@ image::exercise3/01-step2.png[]
 ++++
 
 [start=3]
-3. Go to Networking in the left menu and look for the route associated to this virtual machine. Route name is `exercise3`. 
+3. 左側のメニューから「Networking」を選択し、この仮想マシンに関連付けられているRouteを探してください。Route名は `exercise3` です。
 
 ++++
 <a href="_images/exercise3/02-step3.png" target="_blank" class="popup">
@@ -59,7 +58,7 @@ image::exercise3/02-step3.png[]
 ++++
 
 [start=4]
-4. Access the route in a new browser tab and check if the application is available. The application is currently not serving requests at this endpoint. It may not have been started or is still starting
+4. 新しいブラウザタブでRouteにアクセスし、アプリケーションが利用可能かどうかを確認してください。アプリケーションは現在、このエンドポイントでリクエストを処理していません。起動していないか、起動中である可能性があります。
 
 ++++
 <a href="_images/exercise3/03-step2.png" target="_blank" class="popup">
@@ -70,7 +69,7 @@ image::exercise3/03-step2.png[]
 ++++
 
 [start=5]
-5. Go to the Services menu to get the `exercise3` service details. Look for the IP address and target port and check it is set to 80.
+5. Services メニューに移動して、`exercise3` サービスの詳細を取得します。IP アドレスとターゲット ポートを探し、80 に設定されていることを確認します。
 
 ++++
 <a href="_images/exercise3/04-step5.png" target="_blank" class="popup">
@@ -81,7 +80,7 @@ image::exercise3/04-step5.png[]
 ++++
 
 [start=6]
-6. Go to Workloads and then look for the pods. Select the pod called `curlimage` and access to its terminal.
+6. [Workloads] に移動し、ポッドを探します。`curlimage` という名前のポッドを選択し、そのターミナルにアクセスします。
 
 ++++
 <a href="_images/exercise3/05-step6.png" target="_blank" class="popup">
@@ -92,7 +91,7 @@ image::exercise3/05-step6.png[]
 ++++
 
 [start=7]
-7. Try to do `curl` from the pod to the service IP address and port (80)
+7. ポッドからサービスのIPアドレスとポート（80）に対して`curl`コマンドを実行してみてください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -100,7 +99,7 @@ curl 172.31.155.175:80
 ----
 
 [start=8]
-8. The service should be accessible with message: `Hello from exercise3`, you are doing a great job!
+8. サービスには「`Hello from exercise3`, you are doing a great job!」というメッセージが表示されるはずです。
 
 ++++
 <a href="_images/exercise3/06-step7.png" target="_blank" class="popup">
@@ -111,7 +110,7 @@ image::exercise3/06-step7.png[]
 ++++
 
 [start=9]
-9. Now, check the target port for the route. Go to Network and then Routes and check `exercise3` route port is set to 8080.
+9. 次に、routeのターゲットポートを確認します。ネットワーク、routeの順に移動して、`exercise3` ルートのポートが8080に設定されていることを確認します。
 
 ++++
 <a href="_images/exercise3/07-step9.png" target="_blank" class="popup">
@@ -122,7 +121,7 @@ image::exercise3/07-step9.png[]
 ++++
 
 [start=10]
-10. Edit the route in the `yaml` and update the target port into 80. 
+10. `yaml` 内のルートを編集し、ターゲットポートを 80 に更新します。
 
 [source, yaml]
 ----
@@ -135,9 +134,9 @@ image::exercise3/07-step9.png[]
 ----
 
 [start=11]
-11. Access the route URL again and now the application should be accessible.
+11. 再度route URLにアクセスすると、アプリケーションにアクセスできるようになります。
 
-.Run grade to validate the exercise
+.演習を検証するには、gradeコマンドを実行してください。
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise3
@@ -145,16 +144,16 @@ lab grade exercise3
 
 === Command line (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して`oc`コマンドでOpenshiftサーバーAPIにログインします。
 
-.OpenShift login command
+.OpenShiftログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられた名前空間 namespace-{user} に移動してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -162,7 +161,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3.  Get the Virtual Machine pod IP address
+3.  仮想マシンポッドのIPアドレスを取得します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -171,7 +170,7 @@ PODIP=$(oc get pods -l kubevirt.io/domain=exercise3 \
 ----
 
 [start=4]
-4. Use the curlimage pod to test the Virtual Machine and verify that it's working as expected
+4. curlimageポッドを使用して仮想マシンをテストし、期待どおりに動作していることを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -184,7 +183,7 @@ Hello from exercise3, you are doing a great job!
 ----
 
 [start=5]
-5. Check the service details of exercise3 and get details for IP and Port
+5. exercise3のサービス詳細を確認し、IPアドレスとポート番号の詳細を取得します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -193,7 +192,7 @@ SVCIP=$(oc get svc exercise3 \
 ----
 
 [start=6]
-6. Curl the IP and port from service in the curlimage pod
+6. curlimageポッド内のサービスからIPアドレスとポート番号をcurlで取得します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -206,7 +205,7 @@ Hello from exercise3, you are doing a great job!
 ----
 
 [start=7]
-7. Try to access the route and verify that it's not working
+7. routeにアクセスしてみて、機能していないことを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -215,7 +214,8 @@ curl -s https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}
 ----
 
 [start=8]
-8. Check the route and verify that Wrong `Endpoint Port` (8080)
+8. 
+routeを確認し、`Endpoint Port` (8080) が間違っています、というエラーがないか確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -223,7 +223,7 @@ oc describe route exercise3
 ----
 
 [start=9]
-9. Edit the route exercise3 and change `targetPort` from 8080 to 80
+9. route exercise3を編集し、`targetPort` を8080から80に変更します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -231,7 +231,7 @@ oc edit route exercise3
 ----
 
 [start=10]
-10. or just use this patch
+10. または、このパッチを使用します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -239,11 +239,11 @@ oc patch route exercise3 -p '{"spec":{"port":{"targetPort":80}}}'
 ----
 
 [start=11]
-11. Test the application
+11. アプリケーションをテストします。
 
-NOTE: The application is available on link:https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}[https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}^]
+NOTE: アプリケーションは link:https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}[https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}^] で利用可能です。
 
-or 
+または 
 
 [source,role=execute,subs="attributes"]
 ----
@@ -251,8 +251,10 @@ oc exec curlimage -- curl -s \
 https://exercise3-namespace-{user}.{openshift_cluster_ingress_domain}
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned how to troubleshoot issues preventing external access to an application by examining all related network components in OpenShift. 
-You tested the application within the virtual machine, verified the service, and checked the route.
-These steps help you to determine whether the issue is within OpenShift or an external system.
+この演習では、OpenShift の関連するネットワークコンポーネントをすべて調査することで、アプリケーションへの外部アクセスを妨げる問題のトラブルシューティング方法を学びました。
+
+仮想マシン内でアプリケーションをテストし、サービスを検証し、ルーティングを確認しました。
+
+これらの手順は、問題が OpenShift 内部にあるのか、外部システムにあるのかを判断するのに役立ちます。

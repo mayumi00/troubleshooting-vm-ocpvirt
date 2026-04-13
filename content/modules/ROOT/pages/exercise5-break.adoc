@@ -1,42 +1,45 @@
 [#scenario]
-= Additional disk unaccessible in Virtual Machine
+= 仮想マシンで追加ディスクにアクセスできない
 
-== Scenario
+== シナリオ
 
-The user is reporting that the additional disk in the `exercise5` virtual machine does not show up in the lists when running the `fdisk` or `lsblk` command. The user would like to create a disk named `exercise5-vol-data1` and mount it to the virtual machine named `exercise5`
+ユーザーから、`exercise5` 仮想マシンに追加したディスクが、`fdisk` コマンドまたは `lsblk` コマンドを実行してもリストに表示されないという報告がありました。ユーザーは、`exercise5-vol-data1` という名前のディスクを作成し、それを `exercise5` という名前の仮想マシンにマウントしたいと考えています。
 
-NOTE: Your task is to troubleshoot and resolve the issue so that the `exercise5-vol-data1` disk is showing when the user runs the `lsblk` or `fdisk` command.
+NOTE: ユーザーが `lsblk` コマンドまたは `fdisk` コマンドを実行した際に `exercise5-vol-data1` ディスクが表示されるように、問題のトラブルシューティングと解決を行ってください。
 
-== Executing the lab script
+== ラボスクリプトの実行
 
-In this exercise setup, ensure you are logged in to OpenShift cluster as user `{user}`.
+この演習では、ユーザー `{user}` として OpenShift クラスターにログインしていることを確認してください。
 
-.OpenShift login command
+
+
+.OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
-Once connected to the OCP cluster, run the command to break the lab.
+OCP クラスタに接続したら、コマンドを実行してラボを中断します。
 
-.Breaking the exercise
+.演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise5
 ----
 
-=== Console
-After the break, you can log in to the OpenShift web console using your username and password or continue using the `oc` Command line at bastion to begin the troubleshooting process.
+=== コンソール
+中断後、ユーザー名とパスワードを使用して OpenShift Web コンソールにログインするか、踏み台サーバーの `oc` コマンドラインを使用してトラブルシューティングを開始できます。
+
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}

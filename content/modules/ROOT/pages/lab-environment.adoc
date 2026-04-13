@@ -1,84 +1,96 @@
-= Lab Environment
+= ラボ環境
 
 [#lab]
-== Lab description
+== ラボの説明
 
-This lab is designed to simulate real problems in OpenShift Virtualization, providing hands-on experience with troubleshooting and resolving common issues.
+このラボは、OpenShift Virtualizationにおける実際の問題をシミュレートし、一般的な問題のトラブルシューティングと解決に関する実践的な経験を提供するように設計されています。
 
-== bastion
+== Bastion
 
-All scripts and commands in this lab environment must be executed exclusively via SSH through the bastion host.
+このラボ環境内のすべてのスクリプトとコマンドは、バスティオンホストを介してSSH経由でのみ実行する必要があります。
 
-== lab script
+== ラボスクリプト
 
-The `lab` script is the tool used in this lab with four possible options: `break`, `fix`, `grade`, and `clean`, each acting on a specific `<exercise>`.
+`lab` スクリプトは、このラボで使用するツールです。`break`、`fix`、`grade`、`clean` の4つのオプションがあり、それぞれ特定の `<exercise>` に対して動作します。
 
-=== Usage: 
+=== 使用方法:
 
 ----
-lab <option> <exercise>
+lab <オプション> <exercise>
 ----
 
-=== Options: 
+=== オプション:
 
 ----
 break
 ----
 
-- Purpose: The `break` command introduces a problem to the specified exercise. This will prepare your exercise with a problem that you have to solve.
-- Example: `lab break exercise1`
+- 目的: `break` コマンドは、指定された演習に問題を導入します。これにより、解決すべき問題が演習に導入されます。
 
-----
+- 例: `lab break exercise1`
+
+---- 
 fix
 ----
 
-- Purpose: The `fix` command resolves the problem introduced by the `break`, essentially "restoring" the exercise to it's working state. This is helpful if you’re stuck or want to check your solution against a working example.
-- Example: `lab fix exercise1`
+- 目的: `fix` コマンドは、`break` によって発生した問題を解決し、演習を本来の動作状態に「復元」します。行き詰まった場合や、動作する例と自分の解答を比較したい場合に役立ちます。
 
-----
+- 例: `lab fix exercise1`
+
+---- 
 grade
 ----
 
-- Purpose: The `grade` command verifies your solution to the exercise. It checks for correctness based on the exercise problem.
-- Example: `lab grade exercise1`
+- 目的: `grade` コマンドは、演習の解答を検証します。演習問題に基づいて正誤をチェックします。
 
-----
+- 例: `lab grade exercise1`
+
+---- 
 clean
 ----
 
-- Purpose: The `clean` command removes any changes you’ve made to the exercise, removes the resources created, and resets it to it's original state. This is useful if you want to start the exercise from scratch or prepare it for another attempt. It's recommended that you run after finishing each exercise.
-- Example: `lab clean exercise1`
+- 目的: `clean` コマンドは、演習に加えた変更をすべて削除し、作成したリソースも削除して、演習を元の状態にリセットします。演習を最初からやり直したい場合や、再挑戦の準備をしたい場合に便利です。各演習を終えるたびに実行することをお勧めします。
 
-=== Example Workflow:
+- 例: `lab clean exercise1`
 
-. Start with `lab break <exercise>` to start the exercise.
-. Try to resolve the problem manually.
-. Run `lab grade <exercise>` to check your solution.
-. If needed, use `lab fix <exercise>` to restore functionality or `lab clean <exercise>` to start over on step 1
-. At the end of each exercise you have to clean the lab
+=== ワークフロー例:
 
-== Virtual machine access
+. `lab break <exercise>` を実行して演習を開始します。
 
-All virtual machines in this lab are configured with the user account `lab-user` and the password `redhat1` *.
+. 問題を手動で解決してみてください。
 
-_* Except exercise8_
+. `lab grade <exercise>` を実行して、解決した内容を確認します。
 
-NOTE: Do not make any changes within the virtual machine operating system.
+. 必要に応じて、`lab fix <exercise>` を使用して機能を復元するか、`lab clean <exercise>` を使用して手順 1 からやり直してください。
+. 各演習の最後に、ラボをクリーンアップする必要があります。
 
-== Guided solutions
+== 仮想マシンへのアクセス
 
-At the end of this lab, there's a xref:guidedsolution.adoc[Guided Solution] for all exercises that you can use to learn how to solve the problem step by step.
+このラボのすべての仮想マシンは、ユーザーアカウント `lab-user` とパスワード `redhat1` * で設定されています。
 
-* The exercise resolution will be approached through the OpenShift Web Console and the `oc` client. 
-** The GUI allows users to interact with resources and perform tasks more visually and is ideal for those who prefer point-and-click actions. 
-** The oc client provides a command line interface, giving users more flexibility and control to execute commands and automate tasks. 
-* Both methods will ensure that the problem has been solved.
+_* exercise8 を除く_
 
-== TMUX (Terminal Multiplexer)
+注: 仮想マシンのオペレーティングシステムに変更を加えないでください。
 
-TIP: In this lab, there's no direct way to open a second terminal. However, on bastion you can use `tmux`, which comes pre-installed with some user-friendly customizations to enhance your experience. To start `tmux`, simply type `tmux` in the bastion terminal.
 
-TIP: To copy and paste within `tmux`, use the mouse to select the text for copying, and press `Ctrl + V` to paste.
+
+== ガイド付きソリューション
+
+このラボの最後には、すべての演習に対応したガイド付きソリューション（xref:guidedsolution.adoc[Guided Solution]）が用意されています。これを使って、問題を段階的に解決する方法を学ぶことができます。
+
+* 演習の解決には、OpenShift Webコンソールと`oc`クライアントを使用します。
+
+** GUIを使用すると、リソースとのインタラクションやタスクの実行をより視覚的に行うことができ、ポイント＆クリック操作を好むユーザーに最適です。
+
+** ocクライアントはコマンドラインインターフェースを提供し、コマンドの実行やタスクの自動化において、より柔軟かつ制御性の高い操作を可能にします。
+
+* どちらの方法でも、問題が解決されていることを確認できます。
+
+== TMUX（ターミナルマルチプレクサ）
+
+TIP: このラボでは、2つ目のターミナルを直接開く方法はありません。ただし、bastion環境では、ユーザーエクスペリエンスを向上させるためのカスタマイズがいくつかプリインストールされた`tmux`を使用できます。 `tmux`を起動するには、バスティオン端末で`tmux`と入力するだけです。
+
+TIP: `tmux`内でコピー＆ペーストするには、マウスでコピーしたいテキストを選択し、`Ctrl + V`を押して貼り付けます。
 
 ++++
 <a href="_images/lab-environment/tmux.png" target="_blank" class="popup">
@@ -88,6 +100,6 @@ image::lab-environment/tmux.png[]
 </a>
 ++++
 
-== What you learned section
+== 学習内容
 
-At the end of each `Guided Solution` exercise, you'll find a detailed explanation of the solution along with a review of the key concepts you learned during the activity.
+各「ガイド付きソリューション」演習の最後には、ソリューションの詳細な解説と、アクティビティ中に学習した主要な概念の復習が記載されています。

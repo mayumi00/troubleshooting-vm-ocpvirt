@@ -1,9 +1,9 @@
 [#fix]
-= Enabling VM communication - Part 3
+= VM間の通信を有効にする - パート3
 
-== Scenario
+== シナリオ
 
-The virtual machines `exercise12-a` and `exercise12-b` are operational with their IP addresses properly configured. However, the virtual machine `exercise12-a` is unable to access the application running on port 80 on `exercise12-b`.
+仮想マシン `exercise12-a` と `exercise12-b` は、IPアドレスが正しく設定され、正常に動作しています。しかし、仮想マシン `exercise12-a` は、`exercise12-b` のポート80で実行されているアプリケーションにアクセスできません。
 
 ++++
 <a href="_images/exercise12/12-break01.png" target="_blank" class="popup">
@@ -15,31 +15,31 @@ image::exercise12/12-break01.png[]
 
 [NOTE]
 ====
-* Your task is to identify and troubleshoot the issue preventing communication between the VMs. Resolve it to restore connectivity.
+* VM間の通信を妨げている問題を特定し、トラブルシューティングしてください。問題を解決して接続を復旧させてください。
+
 ====
 
+exercise12の修正手順は以下のとおりです。
 
-The steps to fix exercise12 are:
-
-=== Console
-1. Login to Openshift console using the assigned user account
+=== コンソール
+1. 割り当てられたユーザーアカウントを使用してOpenShiftコンソールにログインします。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to virtualization -> Virtual Machines - select project for the assigned user account
+2.  virtualization -> Virtual Machines に移動し、割り当てられたユーザーアカウントのプロジェクトを選択します。
 
 ++++
 <a href="_images/exercise12/12-break02.png" target="_blank" class="popup">
@@ -50,7 +50,7 @@ image::exercise12/12-break02.png[]
 ++++
 
 [start=3]
-3. Verify the `exercise-12-a` virtual machine IP address
+3. `exercise-12-a` 仮想マシンのIPアドレスを確認します。
 
 ++++
 <a href="_images/exercise12/12-break03.png" target="_blank" class="popup">
@@ -61,7 +61,7 @@ image::exercise12/12-break03.png[]
 ++++
 
 [start=4]
-4. Verify the `exercise-12-b` virtual machine IP address
+4. `exercise-12-b` 仮想マシンのIPアドレスを確認します。
 
 ++++
 <a href="_images/exercise12/12-break04.png" target="_blank" class="popup">
@@ -72,8 +72,8 @@ image::exercise12/12-break04.png[]
 ++++
 
 [start=5]
-5. On `Virtualization` -> `Virtual Machines` menu, click on `exercise12-a` virtual machine and open it's `Console`
-Test the communication is not working on `exercise12-b` IP on port 80
+5. `Virtualization` -> `Virtual Machines` メニューで、`exercise12-a` 仮想マシンをクリックし、その `Console` を開きます。
+`exercise12-b` のIPアドレス、ポート80で通信が機能していないことを確認します。
 
 ++++
 <a href="_images/exercise12/12-break05.png" target="_blank" class="popup">
@@ -84,7 +84,7 @@ image::exercise12/12-break05.png[]
 ++++
 
 [start=6]
-6. On left side menu, click on `Networking` -> `NetworkPolicies` -> `MultiNetworkPolicies`
+6. 左側のメニューで、`Networking` -> `NetworkPolicies` -> `MultiNetworkPolicies` をクリックします。
 
 ++++
 <a href="_images/exercise12/12-break06.png" target="_blank" class="popup">
@@ -95,7 +95,7 @@ image::exercise12/12-break06.png[]
 ++++
 
 [start=7]
-7. Click on `deny-by-default` MultiNetworkPolicy and check it's YAML.
+7. `deny-by-default` MultiNetworkPolicy をクリックし、その YAML を確認してください。
 
 ++++
 <a href="_images/exercise12/12-break07.png" target="_blank" class="popup">
@@ -106,8 +106,7 @@ image::exercise12/12-break07.png[]
 ++++
 
 [start=8]
-8. On left side menu, click on `Networking` -> `NetworkPolicies` -> `MultiNetworkPolicies` and click on `allow-80-on-exercise12`
-and check it's YAML. Verify that the label on `from` is configured as `exercise12-b` virtual machine
+8. 左側のメニューで、`Networking` -> `NetworkPolicies` -> `MultiNetworkPolicies` をクリックし、`allow-80-on-exercise12` をクリックして、その YAML を確認してください。 `from` のラベルが `exercise12-b` 仮想マシンとして設定されていることを確認してください。
 
 ++++
 <a href="_images/exercise12/12-break08.png" target="_blank" class="popup">
@@ -118,7 +117,7 @@ image::exercise12/12-break08.png[]
 ++++
 
 [start=9]
-9. Change it to `exercise12-a` label and click `Save`.
+9. `label` を `exercise12-a` に変更し、`Save` をクリックします。
 
 ++++
 <a href="_images/exercise12/12-break09.png" target="_blank" class="popup">
@@ -129,7 +128,8 @@ image::exercise12/12-break09.png[]
 ++++
 
 [start=10]
-10. Test the connection from `exercise12-a` virtual machine `Console` and it's working now.
+10. `exercise12-a` 仮想マシンの `Console` から接続をテストすると、正常に動作するはずです。
+
 
 ++++
 <a href="_images/exercise12/12-break10.png" target="_blank" class="popup">
@@ -139,26 +139,24 @@ image::exercise12/12-break10.png[]
 </a>
 ++++
 
-
-
-.Run grade to validate the exercise
+演習を検証するには、gradeを実行してください。
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise12
 ----
 
-=== Command line (CLI)
+=== コマンドライン (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドで OpenShift サーバー API にログインします。
 
-.OpenShift login command
+.OpenShift login コマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられたネームスペース {user} に移動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -166,8 +164,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. List the virtual machines
-
+3. 仮想マシンの一覧を表示します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -175,7 +172,7 @@ oc get virtualmachine
 ----
 
 [start=4]
-4. Getting the exercise12-a IP address 
+4. exercise12-a の IP アドレスを取得します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -184,7 +181,7 @@ oc get vmi exercise12-a -n namespace-{user} \
 ----
 
 [start=5]
-5. Getting the exercise12-b IP address 
+5. exercise12-b の IP アドレスを取得します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -193,9 +190,10 @@ oc get vmi exercise12-b -n namespace-{user} \
 ----
 
 [start=6]
-6. Try to access the application running on virtual machine exercise12-b using IP and verify that it's not working.
+6. 仮想マシン exercise12-b 上で実行されているアプリケーションに IP アドレスを使用してアクセスし、動作しないことを確認します。
 
-NOTE:  Do not forget to change the IP to value defined on step 5.
+
+NOTE:  手順5で定義した値にIPアドレスを変更することを忘れないでください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -209,9 +207,8 @@ Warning: Permanently added 'vmi/exercise12-a.namespace-{user}' (ED25519) to the 
 exit status 28
 ----
 
-
 [start=7]
-7. Check that there are two multi-networkpolicies configured on project namespace-{user}
+7. プロジェクト namespace-{user} に 2 つの multi-networkpolicies が設定されていることを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -219,7 +216,7 @@ oc get multi-networkpolicies.k8s.cni.cncf.io
 ----
 
 [start=8]
-8. Verify that multi-networkpolicy `deny-by-default` is blocking all connections on namespace-{user}
+8. マルチネットワークポリシー `deny-by-default` が namespace-{user} 上のすべての接続をブロックしていることを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -242,14 +239,13 @@ spec:
 ----
 
 [start=9]
-9. Verify that multi-networkpolicy `allow-80-on-exercise12` is allowing only all connections from `exercise12-b` Virtual Machines
+9. マルチネットワークポリシー `allow-80-on-exercise12` が、`exercise12-b` 仮想マシンからのすべての接続のみを許可していることを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
 oc get multi-networkpolicies.k8s.cni.cncf.io \
 allow-80-on-exercise12 -o yaml
 ----
-
 [source,subs="attributes"]
 ----
 apiVersion: k8s.cni.cncf.io/v1beta1
@@ -273,9 +269,8 @@ spec:
   - Ingress
 ----
 
-
 [start=10]
-10. In this network-policy there's an error on label used on `podSelector`. The correct label is `vm.kubevirt.io/name: exercise12-a`
+10. このネットワークポリシーでは、`podSelector` で使用されているラベルにエラーがあります。正しいラベルは `vm.kubevirt.io/name: exercise12-a` で​​す。
 
 [source,subs="attributes"]
 ----
@@ -301,7 +296,8 @@ spec:
 ----
 
 [start=11]
-11. Edit the multi-networkpolicy and change the label content to `exercise12-a` once the virtual machine exercise12-a is the connection origin.
+11. 仮想マシン exercise12-a が接続元になるように、multi-networkpolicy を編集し、ラベルの内容を `exercise12-a` に変更してください。
+
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -310,9 +306,10 @@ allow-80-on-exercise12
 ----
 
 [start=12]
-12. Try to access the application running on virtual machine exercise12-b using IP and verify that it's working now. 
+12. 仮想マシン exercise12-b 上で実行されているアプリケーションに IP アドレスを使用してアクセスし、正常に動作することを確認してください。
 
-NOTE:  Do not forget to change the IP to value defined on step 5.
+
+NOTE: 手順5で定義した値にIPアドレスを変更することを忘れないでください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -326,6 +323,6 @@ Warning: Permanently added 'vmi/exercise12-a.namespace-{user}' (ED25519) to the 
 Hey Hey Hey, it's working!!
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that a `MultiNetworkPolicy` custom resource definition is used to restrict communication between two virtual machines connected with a secondary network attached.
+この演習では、`MultiNetworkPolicy` カスタムリソース定義を使用して、セカンダリネットワークに接続された2台の仮想マシン間の通信を制限する方法を学びました。

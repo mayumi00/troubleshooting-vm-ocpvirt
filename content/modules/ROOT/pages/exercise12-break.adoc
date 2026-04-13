@@ -1,9 +1,9 @@
 [#scenario]
-= Enabling VM communication - Part 3
+= 仮想マシン間の通信を有効にする - パート3
 
-== Scenario
+== シナリオ
 
-The virtual machines `exercise12-a` and `exercise12-b` are operational with their IP addresses properly configured. However, the virtual machine `exercise12-a` is unable to access the application running on port 80 on `exercise12-b`.
+仮想マシン `exercise12-a` と `exercise12-b` は、IPアドレスが正しく設定され、正常に動作しています。しかし、仮想マシン `exercise12-a` は、`exercise12-b` のポート80で実行されているアプリケーションにアクセスできません。
 
 ++++
 <a href="_images/exercise12/12-break01.png" target="_blank" class="popup">
@@ -15,41 +15,43 @@ image::exercise12/12-break01.png[]
 
 [NOTE]
 ====
-* Your task is to identify and troubleshoot the issue preventing communication between the VMs. 
-* Resolve it to restore connectivity on port 80.
-*  The `subnet` is defined on `NetworkAttachmentDefinitions`, and you must check the virtual machines IP addresses
+* 仮想マシン間の通信を妨げている問題を特定し、トラブルシューティングしてください。
+
+* ポート80への接続を復元するために問題を解決してください。
+* `subnet` は `NetworkAttachmentDefinitions` で定義されています。仮想マシンのIPアドレスを確認してください。
 ====
 
-== Executing the lab script
+== ラボスクリプトの実行
 
-In this exercise setup, ensure you are logged in to OpenShift cluster as user `{user}`.
+この演習設定では、ユーザー`{user}`としてOpenShiftクラスタにログインしていることを確認してください。
 
-.OpenShift login command
+.OpenShift loginコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
-Once connected to the OCP cluster, run the command to break the lab.
+OCPクラスタに接続したら、ラボを中断するコマンドを実行してください。
 
-.Breaking the exercise
+
+演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise12
 ----
 
-=== Console
-After the break, you can log in to the OpenShift web console using your username and password or continue using the `oc` Command line at bastion to begin the troubleshooting process.
+=== コンソール
+中断後、ユーザー名とパスワードを使用してOpenShift Webコンソールにログインするか、踏み台サーバーの`oc`コマンドラインを使用してトラブルシューティングプロセスを開始できます。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}

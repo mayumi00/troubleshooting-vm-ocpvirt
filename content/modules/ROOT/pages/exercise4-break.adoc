@@ -1,13 +1,13 @@
 [#scenario]
-= Virtual Machine with performance degraded
+= パフォーマンスが低下した仮想マシン
 
-== Scenario
+== シナリオ
 
-In this scenario, a Virtual Machine named `exercise4` is currently in a `running` state. The development team has reported performance issues with an application hosted on this VM.
+このシナリオでは、`exercise4` という名前の仮想マシンが現在 `running` 状態です。開発チームから、この仮想マシン上で稼働しているアプリケーションのパフォーマンス問題が発生しているとの報告がありました。
 
-Your task is to investigate the problem by analyzing the VM’s resource usage, including CPU, memory, and other relevant metrics. You are permitted to adjust the VM's compute resources as needed to resolve the issue; however, a reboot is not permitted.
+あなたのタスクは、CPU、メモリ、その他の関連メトリックを含む仮想マシンのリソース使用状況を分析することで、この問題を調査することです。問題解決のために必要に応じて仮想マシンのコンピューティングリソースを調整することは許可されていますが、再起動は許可されていません。
 
-=== Analyzing CPU utilization within the virtual machine
+=== 仮想マシン内のCPU使用率の分析
 ++++
 <a href="_images/exercise4/04-break01.png" target="_blank" class="popup">
 ++++
@@ -16,7 +16,7 @@ image::exercise4/04-break01.png[]
 </a>
 ++++
 
-=== Analyzing CPU utilization with oc client
+=== oc client を使用した CPU 使用率の分析
 ++++
 <a href="_images/exercise4/04-break02.png" target="_blank" class="popup">
 ++++
@@ -27,49 +27,50 @@ image::exercise4/04-break02.png[]
 
 [NOTE]
 ====
-* The goal is to identify bottlenecks or misconfigurations and implement optimizations to enhance the application's efficiency within the virtualized infrastructure.
-* Do not kill any process running inside the virtual machine
-* Do not reboot the virtual machine
-* The amount of CPU available for the virtual machine in this lab is 4.
+* 目標は、仮想化インフラストラクチャ内でボトルネックや設定ミスを特定し、アプリケーションの効率を向上させるための最適化を実施することです。
+* 仮想マシン内で実行中のプロセスを強制終了しないでください。
+* 仮想マシンを再起動しないでください。
+* このラボで使用する仮想マシンに割り当てられるCPUは4です。
 ====
 
-.Command to check the CPU usage on Virtual Machine
+.仮想マシンのCPU使用率を確認するコマンド
+
 [source,sh,role=execute,subs="attributes"]
 ----
 virtctl ssh lab-user@exercise4 \
 --command "top -b -n 1 | grep 'Cpu(s)' | awk '{print \$2 \"% Used\"}'"
 ----
 
-== Executing the lab script
+== ラボスクリプトの実行
 
-In this exercise setup, ensure you are logged in to OpenShift cluster as user `{user}`.
+この演習設定では、ユーザー `{user}` として OpenShift クラスターにログインしていることを確認してください。
 
-.OpenShift login command
+.OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
-Once connected to the OCP cluster, run the command to break the lab.
+OCP クラスターに接続したら、ラボを中断するコマンドを実行します。
 
-.Breaking the exercise
+.演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise4
 ----
+=== コンソール
+中断後、ユーザー名とパスワードを使用して OpenShift Web コンソールにログインするか、踏み台サーバーで `oc` コマンドラインを使用してトラブルシューティングプロセスを開始できます。
 
-=== Console
-After the break, you can log in to the OpenShift web console using your username and password or continue using the `oc` Command line at bastion to begin the troubleshooting process.
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}

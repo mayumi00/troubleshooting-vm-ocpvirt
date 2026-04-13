@@ -1,12 +1,13 @@
 [#fix]
-= Enabling VM communication - Part 2
+= 仮想マシン間の通信を有効にする - パート2
 
-== Scenario
+== シナリオ
 
-The virtual machines `exercise11-a` and `exercise11-b` are operational and with their IP addresses configured. However, they are not communicating with each other as expected.
+仮想マシン `exercise11-a` と `exercise11-b` は稼働しており、IPアドレスも設定済みです。しかし、想定どおりに相互に通信していません。
 
 
-- Virtual Machine `exercise11-a` IP's addresses
+
+- 仮想マシン `exercise11-a` の IP アドレス
 
 ++++
 <a href="_images/exercise11/11-break1.png" target="_blank" class="popup">
@@ -16,7 +17,7 @@ image::exercise11/11-break1.png[]
 </a>
 ++++
 
-- Virtual Machine `exercise11-b` IP's addresses
+- 仮想マシン `exercise11-b` の IP アドレス
 
 ++++
 <a href="_images/exercise11/11-break2.png" target="_blank" class="popup">
@@ -26,7 +27,8 @@ image::exercise11/11-break2.png[]
 </a>
 ++++
 
-- ping from `exercise11-a` to `exercise11-b` is not working.
+- `exercise11-a` から `exercise11-b` への ping が機能していません。
+
 
 ++++
 <a href="_images/exercise11/11-break3.png" target="_blank" class="popup">
@@ -38,32 +40,33 @@ image::exercise11/11-break3.png[]
 
 [NOTE]
 ====
-* Your task is to identify and troubleshoot the issue preventing communication between the VMs. Resolve it to restore connectivity.
-* You can recreate any virtual machine if needed
-* Do not edit nothing inside the guest OS
+* 仮想マシン間の通信を妨げている問題を特定し、トラブルシューティングを行うのがあなたのタスクです。問題を解決して接続を復旧させてください。
+
+* 必要に応じて仮想マシンを再作成できます
+* ゲストOS内部のファイルは一切編集しないでください
 ====
 
-The steps to fix exercise11 are:
+exercise11を修正する手順は以下のとおりです。
 
-=== Console
-1. Login to Openshift console using the assigned user account
+=== コンソール
+1. 割り当てられたユーザーアカウントを使用してOpenShiftコンソールにログインします。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=1]
-1. Go to Virtualization - VirtualMachines and check the virtual machines IP addresses
+1. Virtualization - VirtualMachines に移動し、仮想マシンのIPアドレスを確認します。
 
 ++++
 <a href="_images/exercise11/11-break0.png" target="_blank" class="popup">
@@ -74,7 +77,7 @@ image::exercise11/11-break0.png[]
 ++++
 
 [start=2]
-2. Verify `exercise11-a` IP address
+2. `exercise11-a` の IP アドレスを確認します。
 
 ++++
 <a href="_images/exercise11/11-break1.png" target="_blank" class="popup">
@@ -85,7 +88,7 @@ image::exercise11/11-break1.png[]
 ++++
 
 [start=3]
-3. Verify `exercise11-b` IP address
+3. `exercise11-b` の IP アドレスを確認します。
 
 ++++
 <a href="_images/exercise11/11-break2.png" target="_blank" class="popup">
@@ -96,8 +99,8 @@ image::exercise11/11-break2.png[]
 ++++
 
 [start=4]
-4. Click on `exercise11-a` Virtual machine, open `Console`, login with user `lab-user`
-and password `redhat1`. Try to ping and verify it's not working.  
+4. `exercise11-a` 仮想マシンをクリックします。コンソールを開き、ユーザー名 `lab-user` 、パスワード `redhat1` でログインしてください。
+pingを実行して、動作しないことを確認してください。
 
 ++++
 <a href="_images/exercise11/11-break4.png" target="_blank" class="popup">
@@ -108,7 +111,7 @@ image::exercise11/11-break4.png[]
 ++++
 
 [start=5]
-5. On `exercise11-a` virtual machine, click on `Configuration` -> `Initial run`
+5. 仮想マシン `exercise11-a` で、 `Configuration` → `Initial run` をクリックします。
 
 ++++
 <a href="_images/exercise11/11-break5.png" target="_blank" class="popup">
@@ -119,7 +122,7 @@ image::exercise11/11-break5.png[]
 ++++
 
 [start=6]
-6. Click `edit`
+6. `edit` をクリックします。
 
 ++++
 <a href="_images/exercise11/11-break6.png" target="_blank" class="popup">
@@ -130,7 +133,7 @@ image::exercise11/11-break6.png[]
 ++++
 
 [start=7]
-7. Verify the IP address is configured as cloud-init.
+7. IPアドレスがcloud-initとして設定されていることを確認します。
 
 ++++
 <a href="_images/exercise11/11-break7.png" target="_blank" class="popup">
@@ -141,7 +144,8 @@ image::exercise11/11-break7.png[]
 ++++
 
 [start=8]
-8. Perform the same steps to `exercise11-b` virtual machine and verify that this IP address was misconfigured using a /32 netmask, which must be fixed.
+8. `exercise11-b`仮想マシンに対しても同じ手順を実行し、このIPアドレスが/32ネットマスクを使用して誤って設定されていることを確認します。この設定を修正する必要があります。
+
 
 ++++
 <a href="_images/exercise11/11-break8.png" target="_blank" class="popup">
@@ -152,8 +156,9 @@ image::exercise11/11-break8.png[]
 ++++
 
 [start=9]
-9. Click on YAML tab and Download the yaml file. It will be used to recreate the virtual machine
-with the correct netmask.
+9. YAMLタブをクリックし、YAMLファイルをダウンロードしてください。このファイルは、正しいネットマスクを使用して仮想マシンを再作成するために使用されます。
+
+
 
 ++++
 <a href="_images/exercise11/11-break9.png" target="_blank" class="popup">
@@ -164,7 +169,7 @@ image::exercise11/11-break9.png[]
 ++++
 
 [start=10]
-10. Click `Actions` -> `Stop` -> `Actions` -> `Delete` to delete the `exercise11-b` virtual machines
+10. `Actions` -> `Stop` -> `Actions` -> `Delete` をクリックして、`exercise11-b` 仮想マシンを削除します。
 
 ++++
 <a href="_images/exercise11/11-break10.png" target="_blank" class="popup">
@@ -175,7 +180,7 @@ image::exercise11/11-break10.png[]
 ++++
 
 [start=11]
-11. Click `Delete`
+11. `Delete` をクリックします。
 
 ++++
 <a href="_images/exercise11/11-break11.png" target="_blank" class="popup">
@@ -186,7 +191,8 @@ image::exercise11/11-break11.png[]
 ++++
 
 [start=12]
-12. Wait for `exercise11-b` to be deleted.
+12. `exercise11-b` が削除されるまで待ちます。
+
 
 ++++
 <a href="_images/exercise11/11-break12.png" target="_blank" class="popup">
@@ -197,7 +203,7 @@ image::exercise11/11-break12.png[]
 ++++
 
 [start=13]
-13. Click `+` --> `Import YAML` button to create a new virtual machine using the YAML downloaded on step 9.
+13. 手順9でダウンロードしたYAMLファイルを使用して新しい仮想マシンを作成するには、`+` --> `Import YAML` ボタンをクリックします。
 
 ++++
 <a href="_images/exercise11/11-break13.png" target="_blank" class="popup">
@@ -208,7 +214,7 @@ image::exercise11/11-break13.png[]
 ++++
 
 [start=14]
-14. Paste the YAML content and edit the IP configured to this VM from `192.168.0.11/32` to `192.168.0.11/24` 
+14. YAMLの内容を貼り付け、この仮想マシンに設定されているIPアドレスを `192.168.0.11/32`  から `192.168.0.11/24` に編集します。
 
 ++++
 <a href="_images/exercise11/11-break14.png" target="_blank" class="popup">
@@ -219,7 +225,8 @@ image::exercise11/11-break14.png[]
 ++++
 
 [start=15]
-15. Wait for `exercise11-b` Virtual Machine be recreated and verify that communication os working.
+15. 仮想マシン `exercise11-b` が再作成されるまで待ち、通信が正常に機能していることを確認してください。
+
 
 ++++
 <a href="_images/exercise11/11-break15.png" target="_blank" class="popup">
@@ -229,25 +236,24 @@ image::exercise11/11-break15.png[]
 </a>
 ++++
 
-
-.Run grade to validate the exercise
+.演習を検証するにはgrade を実行してください
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise11
 ----
 
-=== Command line (CLI)
+=== コマンドライン (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドで OpenShift サーバー API にログインします。
 
-.OpenShift login command
+.OpenShift login コマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられたネームスペース {user} に移動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -255,7 +261,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. List the virtual machines
+3. 仮想マシンの一覧を表示します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -263,7 +269,7 @@ oc get virtualmachine
 ----
 
 [start=4]
-4. Verify the communication is not working
+4. 通信が機能していないことを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -272,7 +278,7 @@ virtctl ssh lab-user@exercise11-a \
 ----
 
 [start=5]
-5. Check the virtual machine exercise11-a and exercise11-b are with IP configured
+5. 仮想マシン `exercise11-a` と `exercise11-b` に IP アドレスが設定されていることを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -287,7 +293,7 @@ virtctl ssh lab-user@exercise11-b \
 ----
 
 [start=6]
-6. Check the virtual machines are configured with static IP on CRD VirtualMachine with cloud-init 
+6. cloud-init を使用した CRD VirtualMachine 上で、仮想マシンに静的 IP アドレスが設定されていることを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -302,20 +308,19 @@ oc get vmi exercise11-b -n namespace-{user} \
 ----
 
 [start=7]
-7. The issue is with the `exercise11-b` virtual machine, which is incorrectly configured with a /32 subnet mask but should be using a /24 subnet mask. 
-   Since the IP address is set using cloud-init, the virtual machine must be recreated to correct the configuration.
-   Before recreating the virtual machine, use the command to save `exercise11-b`, removing some unnecessary fields.
+7. 問題は、仮想マシン `exercise11-b` にあります。この仮想マシンは /32 サブネットマスクで誤って設定されていますが、正しくは /24 サブネットマスクを使用する必要があります。 IPアドレスはcloud-initで設定されているため、設定を修正するには仮想マシンを再作成する必要があります。
+
+仮想マシンを再作成する前に、以下のコマンドを使用して `exercise11-b` を保存し、不要なフィールドを削除してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
-oc get virtualmachine exercise11-b -o yaml |\ 
-sed -e '/managedFields:/,/^[^ ]/d' \
+oc get virtualmachine exercise11-b -o yaml |\ sed -e '/managedFields:/,/^[^ ]/d' \
 -e '/creationTimestamp:/d' -e '/resourceVersion:/d' \
 -e '/uid:/d' -e '/status:/,/^[^ ]/d' > exercise11-b.yaml
 ----
 
 [start=9]
-9. Edit the IP on YAML file and change from /32 to /24.
+9. YAMLファイル内のIPアドレスを編集し、/32から/24に変更してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -323,7 +328,7 @@ vim exercise11-b.yaml
 ----
 
 [start=10]
-10. Delete exercise11-b virtual machine
+10. exercise11-b 仮想マシンを削除します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -331,7 +336,7 @@ oc delete virtualmachine exercise11-b
 ----
 
 [start=11]
-11. Apply the edited YAML file
+11. 編集した YAML ファイルを適用します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -339,7 +344,7 @@ oc apply -f exercise11-b.yaml
 ----
 
 [start=12]
-12. Check the communication is working again
+12. 通信が正常に動作していることを確認します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -347,7 +352,8 @@ virtctl ssh lab-user@exercise11-a \
 -c 'ping -c 3 192.168.0.11'
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that to modify any cloud-init configuration defined in a VirtualMachine manifest, you must recreate the virtual machine.
-This is because cloud-init only executes during the first boot of the virtual machine.
+この演習では、VirtualMachine マニフェストで定義されている cloud-init の設定を変更するには、仮想マシンを再作成する必要があることを学びました。
+
+これは、cloud-init が仮想マシンの初回起動時にのみ実行されるためです。

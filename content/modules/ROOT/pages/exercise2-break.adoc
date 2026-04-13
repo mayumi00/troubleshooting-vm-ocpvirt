@@ -1,9 +1,9 @@
 [#scenario]
-= Virtual Machine is not starting - part 2
+= 仮想マシンが起動しない - パート2
 
-== Scenario
+== シナリオ
 
-The user tried to deploy and run a virtual machine and is facing an issue.
+ユーザーが仮想マシンをデプロイして実行しようとしたところ、問題が発生しました。
 
 ++++
 <a href="_images/exercise2/01-step2.png" target="_blank" class="popup">
@@ -13,41 +13,42 @@ image::exercise2/01-step2.png[]
 </a>
 ++++
 
+NOTE: このシナリオの主な目的は、障害の原因を調査し、`exercise2` 仮想マシンを `Running` 状態に戻すための是正措置を講じることです。
 
-NOTE: The primary goal in this scenario is to investigate the cause of the failure and take corrective action to get `exercise2` virtual machine back into the `Running` state.
+あなたのタスクは、根本原因を特定し、問題を解決することです。
 
-Your task is to identify the root cause and resolve the issue.
+== ラボスクリプトの実行
 
-== Executing the lab script
+この演習の設定では、ユーザー `{user}` として OpenShift クラスターにログインしていることを確認してください。
 
-In this exercise setup, ensure you are logged in to OpenShift cluster as user `{user}`.
 
-.OpenShift login command
+.OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
-Once connected to the OCP cluster, run the command to break the lab.
+OCP クラスタに接続したら、コマンドを実行してラボを中断します。
 
-.Breaking the exercise
+.演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise2
 ----
 
-=== Console
-After the break, you can log in to the OpenShift web console using your username and password or continue using the `oc` Command line at bastion to begin the troubleshooting process.
+=== コンソール
+中断後、ユーザー名とパスワードを使用して OpenShift Web コンソールにログインするか、踏み台サーバーの `oc` コマンドラインを使用してトラブルシューティングプロセスを開始できます。
+
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}

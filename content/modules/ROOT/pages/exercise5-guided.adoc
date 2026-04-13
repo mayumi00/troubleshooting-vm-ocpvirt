@@ -1,35 +1,35 @@
 [#fix]
-= Additional disk unaccessible in Virtual Machine
+= 仮想マシンで追加ディスクにアクセスできない
 
-== Scenario
+== シナリオ
 
-The user is reporting that the additional disk in the `exercise5` virtual machine does not show up in the lists when running the `fdisk` or `lsblk` command. The user would like to create a disk named `exercise5-vol-data1` and mount it to the virtual machine named `exercise5`
+ユーザーから、`exercise5` 仮想マシンに追加したディスクが、`fdisk` コマンドまたは `lsblk` コマンドを実行してもリストに表示されないという報告がありました。ユーザーは、`exercise5-vol-data1` という名前のディスクを作成し、それを `exercise5` という名前の仮想マシンにマウントしたいと考えています。
 
-NOTE: Your task is to troubleshoot and resolve the issue so that the `exercise5-vol-data1` disk is showing when the user runs the `lsblk` or `fdisk` command.
+注: ユーザーが `lsblk` コマンドまたは `fdisk` コマンドを実行した際に `exercise5-vol-data1` ディスクが表示されるように、問題のトラブルシューティングと解決を行ってください。
 
-The steps to fix exercise5 are:
+演習5を修正する手順は以下のとおりです。
 
-=== Console
+=== コンソール
 
-1. Login to OpenShift console using the assigned user account.
+1. 割り当てられたユーザーアカウントを使用して OpenShift コンソールにログインします。
+
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to Virtualization - VirtualMachines - Select the project for the assigned user account - look for VM called `exercise5`.
-
+2. Virtualization から VirtualMachines に移動して、割り当てられたユーザーアカウントのプロジェクトを選択してください。`exercise5`という名前のVMを探してください。
 ++++
 <a href="_images/exercise5/05-break01.png" target="_blank" class="popup">
 ++++
@@ -39,9 +39,7 @@ image::exercise5/05-break01.png[]
 ++++
 
 [start=3]
-3. On `exercise5` virtual machine click in `Configuration` -> `Storage` and 
-check there's an extra disk.
-
+3. `exercise5`仮想マシンで、`Configuration` -> `Storage` をクリックし、追加のディスクがあることを確認してください。
 ++++
 <a href="_images/exercise5/05-break02.png" target="_blank" class="popup">
 ++++
@@ -51,8 +49,8 @@ image::exercise5/05-break02.png[]
 ++++
 
 [start=4]
-4. On left side menu, click `Home` -> `Search` and on `Resources` type `DataVolume`.
-Click on `exercise5-vol-data1` DataVolume
+4. 左側のメニューで `Home` -> `Search` をクリックし、`Resources` に `DataVolume` と入力します。
+`exercise5-vol-data1` DataVolumeをクリックします。
 
 ++++
 <a href="_images/exercise5/05-break03.png" target="_blank" class="popup">
@@ -63,7 +61,7 @@ image::exercise5/05-break03.png[]
 ++++
 
 [start=5]
-5. Verify there's an error message on Data Volume.
+5. DataVolumeにエラーメッセージが表示されていることを確認してください。
 
 ++++
 <a href="_images/exercise5/05-break04.png" target="_blank" class="popup">
@@ -74,7 +72,7 @@ image::exercise5/05-break04.png[]
 ++++
 
 [start=6]
-6. The storageClassName is misconfigured.
+6. storageClassNameの設定が間違っています。
 
 ++++
 <a href="_images/exercise5/05-break05.png" target="_blank" class="popup">
@@ -85,7 +83,7 @@ image::exercise5/05-break05.png[]
 ++++
 
 [start=7]
-7. Click `Actions` and `Delete DataVolume`
+7. `Actions` をクリックし、`Delete DataVolume` をクリックします。
 
 ++++
 <a href="_images/exercise5/05-break06.png" target="_blank" class="popup">
@@ -96,7 +94,7 @@ image::exercise5/05-break06.png[]
 ++++
 
 [start=8]
-8. Click `Delete`
+8. `Delete` をクリックします。
 
 ++++
 <a href="_images/exercise5/05-break07.png" target="_blank" class="popup">
@@ -107,8 +105,7 @@ image::exercise5/05-break07.png[]
 ++++
 
 [start=9]
-9. Click on `Create DataVolume` button and paste the content to create a new Data Volume 
-with the correct `storageClassName`
+9. `Create DataVolume` ボタンをクリックし、内容を貼り付けて、正しい `storageClassName` を持つ新しいデータボリュームを作成します。
 
 ++++
 <a href="_images/exercise5/05-break08.png" target="_blank" class="popup">
@@ -119,7 +116,7 @@ image::exercise5/05-break08.png[]
 ++++
 
 [start=10]
-10. Paste the content of the new DataVolume with storageClassName fixed and click `Create`
+10. storageClassNameを固定した新しいDataVolumeの内容を貼り付けて、`Create` をクリックします。
 
 [source,sh,role=execute]
 ----
@@ -147,7 +144,7 @@ image::exercise5/05-break09.png[]
 ++++
 
 [start=11]
-11. Wait for Data Volume status change to `Succeeded`
+11. データボリュームのステータスが `Succeeded` に変わるまで待機します。
 
 ++++
 <a href="_images/exercise5/05-break10.png" target="_blank" class="popup">
@@ -158,26 +155,26 @@ image::exercise5/05-break10.png[]
 ++++
 
 [start=12]
-12. You can run the `lab grade exercise5` command to validate the exercise.
+12. `lab grade exercise5` コマンドを実行すると、演習の妥当性を検証できます。
 
-.Run grade to validate the exercise
+.演習を検証するためにグレードを実行します
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise5
 ----
 
-=== Command line (CLI)
+=== コマンドラインインターフェース (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドで OpenShift サーバー API にログインします。
 
-.OpenShift login command
+.OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 指定されたネームスペース namespace-{user} に移動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -185,7 +182,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. List the virtual machines
+3. 仮想マシンの一覧を表示する。
 
 
 [source,sh,role=execute,subs="attributes"]
@@ -194,7 +191,7 @@ oc get virtualmachine
 ----
 
 [start=4]
-5. Check the additional data disk `exercise5-vol-data1` Datavolume is empty
+5. 追加データディスク `exercise5-vol-data1` のデータボリュームが空であることを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -202,7 +199,7 @@ oc get datavolume
 ----
 
 [start=5]
-4. Check the additional data disk `exercise5-vol-data1` does not have no `PersistentVolumeClaims` associated
+4. 追加データディスク `exercise5-vol-data1` に`PersistentVolumeClaims` が関連付けられていないことを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -210,8 +207,7 @@ oc get pvc
 ----
 
 [start=6]
-6. Check the configuration of `exercise5-vol-data1` Datavolume and verify that 
-there is a misconfigured defaultStorageClass 
+6. `exercise5-vol-data1` データボリュームの設定を確認し、defaultStorageClass の設定が誤っていないか確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -219,7 +215,7 @@ oc get datavolume exercise5-vol-data1 -n namespace-{user} -o yaml
 ----
 
 [start=7]
-7. Delete the the datavolume exercise5-vol-data1
+7. データボリューム exercise5-vol-data1 を削除します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -227,7 +223,7 @@ oc delete datavolume exercise5-vol-data1
 ----
 
 [start=8]
-8. Create again the DataVolume by using the `storageClassName` of `ocs-storagecluster-ceph-rbd` with the name `exercise5-vol-data1` and using 30GiB size.
+8. `ocs-storagecluster-ceph-rbd`の`storageClassName`を使用して、名前を`exercise5-vol-data1`、サイズを30GiBとして、DataVolumeを再度作成します。
 
 [source,sh,role=execute]
 ----
@@ -249,7 +245,7 @@ EOF
 ----
 
 [start=9]
-9. Check the status of exercise5-vol-data1 and wait for the additional disk to be provisioned
+9. exercise5-vol-data1の状態を確認し、追加ディスクのプロビジョニングが完了するまでお待ちください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -257,7 +253,7 @@ watch oc get pvc
 ----
 
 [start=10]
-10. Go to virtual machine console of exercise5 and login using lab-user credential
+10. exercise5の仮想マシンコンソールに移動し、ラボユーザーの認証情報を使用してログインしてください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -265,9 +261,10 @@ virtctl console exercise5
 ----
 
 [start=11]
-11. Check the disk availability using `lsblk` or `fdisk -l` command. The new additional disk from `exercise5-vol-data1` should be there and ready to be format and mount by the user.
+11. `lsblk` または `fdisk -l` コマンドを使用してディスクの可用性を確認してください。`exercise5-vol-data1` から追加された新しいディスクが存在し、ユーザーがフォーマットしてマウントできる状態になっているはずです。
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that disks are not presented to virtual machines until Persistent Volume Claims (PVCs) are created. 
-To change the `storageClassName` of a data volume in OpenShift Virtualization, you need to delete the existing data volume and create a new one with the desired storage class.
+この演習では、永続ボリューム要求 (PVC) が作成されるまで、ディスクは仮想マシンに提示されないことを学びました。
+
+OpenShift Virtualization でデータボリュームの `storageClassName` を変更するには、既存のデータボリュームを削除し、目的のストレージクラスで新しいデータボリュームを作成する必要があります。

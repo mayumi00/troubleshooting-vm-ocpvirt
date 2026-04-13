@@ -1,15 +1,20 @@
 = {lab_name}
 
-This hands-on troubleshooting lab addresses common challenges when running virtual machines within OpenShift Virtualization. You will deploy and manage virtual machines, navigate the OpenShift web console, and address frequent issues such as deploying virtual machine issues, external access failures, storage limitations, network misconfigurations, etc.
+この実践的なトラブルシューティングラボでは、OpenShift Virtualization環境で仮想マシンを実行する際に発生する一般的な課題に取り組みます。仮想マシンのデプロイと管理、OpenShift Webコンソールの操作、そして仮想マシンのデプロイに関する問題、外部アクセス障害、ストレージ制限、ネットワーク構成ミスなど、頻繁に発生する問題への対処方法を習得します。
 
-Through practical exercises, you will learn to identify and resolve virtual machine deployment failures, storage provisioning errors, migration failures and virtual machines with networking issues.
+実践的な演習を通して、仮想マシンのデプロイ失敗、ストレージプロビジョニングエラー、移行失敗、ネットワーク問題のある仮想マシンなどを特定し、解決する方法を学びます。
 
-.Key skills covered
-* Includes:
-  - Identifying common OpenShift Virtualization issues, such as VM startup failures, storage provisioning challenges, and network configuration problems.
-  - Using oc commands and the OpenShift web console for effective troubleshooting.
-  - Using virtctl commands to access the virtual machines via SSH or Console.
-  - Analyzing logs from OpenShift virtualization components to diagnose and resolve issues.
-  - Troubleshooting connectivity and performance issues affecting virtual machine.
+.主な学習内容
+* 内容：
 
-This lab provides real-world scenarios to equip you with essential diagnostic techniques and configuration strategies for troubleshooting virtual machines problems in OpenShift.
+- 仮想マシンの起動失敗、ストレージプロビジョニングの問題、ネットワーク構成の問題など、OpenShift Virtualization環境でよく発生する問題の特定。
+
+- ocコマンドとOpenShift Webコンソールを用いた効果的なトラブルシューティング。
+
+- virtctlコマンドを用いたSSHまたはコンソール経由での仮想マシンへのアクセス。
+
+- OpenShift Virtualizationコンポーネントのログを分析し、問題の診断と解決。
+
+- 仮想マシンに影響を与える接続性およびパフォーマンスの問題のトラブルシューティング。
+
+このラボでは、OpenShift環境における仮想マシンの問題解決に必要な診断手法と構成戦略を習得するための、実践的なシナリオを提供します。

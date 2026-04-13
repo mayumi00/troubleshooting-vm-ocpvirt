@@ -1,9 +1,9 @@
-[#fix]
-= Live Migration failed
+[#scenario]
+= ライブマイグレーションが失敗しました
 
-== Scenario
+== シナリオ
 
-Using `live migration`, the user is attempting to migrate a virtual machine from one node to another.
+ユーザーは `live migration` を使用して、仮想マシンをあるノードから別のノードに移行しようとしています。
 
 ++++
 <a href="_images/exercise6/04-step5-1.png" target="_blank" class="popup">
@@ -13,30 +13,30 @@ image::exercise6/04-step5-1.png[]
 </a>
 ++++
 
-NOTE: The primary goal is to investigate the cause of the live migration failure and take corrective action to successfully migrate the `exercise6` virtual machine to another node. Your task is to identify the root cause and resolve the issue.
+NOTE: 主な目的は、ライブマイグレーションの失敗原因を調査し、是正措置を講じて仮想マシン `exercise6` を別のノードへ正常に移行することです。あなたの任務は、根本原因を特定し、問題を解決することです。
 
-The steps to fix exercise6 are:
+演習6を修正する手順は以下のとおりです。
 
-=== Console
+=== コンソール
 
-1. Login to OpenShift console using the assigned user account.
+1. 割り当てられたユーザーアカウントを使用して OpenShift コンソールにログインします。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to Virtualization - VirtualMachines - Select the project for the assigned user account - look for VM called `exercise6`.
+2. Virtualization から VirtualMachines へ移動し、割り当てられたユーザーアカウントのプロジェクトを選択してください。`exercise6` という名前のVMを探してください。
 
 ++++
 <a href="_images/exercise6/01-step2.png" target="_blank" class="popup">
@@ -47,7 +47,7 @@ image::exercise6/01-step2.png[]
 ++++
 
 [start=3]
-3. Open the Virtual Machine `exercise6` to get it's details.
+3. 仮想マシン `exercise6` を開いて詳細を確認してください。
 
 ++++
 <a href="_images/exercise6/02-step3.png" target="_blank" class="popup">
@@ -58,7 +58,7 @@ image::exercise6/02-step3.png[]
 ++++
 
 [start=4]
-4. Try to migrate the virtual machine using Live Migration. Migration is going to fail.
+4. Live Migrationを使用して仮想マシンを移行してみてください。移行は失敗します。
 
 ++++
 <a href="_images/exercise6/03-step4.png" target="_blank" class="popup">
@@ -69,9 +69,9 @@ image::exercise6/03-step4.png[]
 ++++
 
 [start=5]
-5. Examine the logs of the `virt-launcher-exercise6` pod to identify the root cause. 
+5. 根本原因を特定するために、`virt-launcher-exercise6`ポッドのログを調べてください。
 
-** Go to the project for the assigned user account and then look for the failed pod.
+** 割り当てられたユーザーアカウントのプロジェクトに移動し、失敗したポッドを探してください。
 
 ++++
 <a href="_images/exercise6/04-step5-1.png" target="_blank" class="popup">
@@ -81,7 +81,7 @@ image::exercise6/04-step5-1.png[]
 </a>
 ++++
 
-** Check the pod logs. The issue occurs because the virtual machine disks are configured as read-only, preventing migration. 
+** Podのログを確認してください。この問題は、仮想マシンのディスクが読み取り専用に設定されているため、移行が妨げられていることが原因で発生します。
 
 [source]
 ----
@@ -89,10 +89,10 @@ image::exercise6/04-step5-1.png[]
 ----
 
 [start=6]
-6. Stop the virtual machine to edit it's configuration.
+6. 仮想マシンの設定を編集するには、仮想マシンを停止してください。
 
 [start=7]
-7. Edit the virtual machine and remove the fields `readonly: true` from the VM disks. Go to the `YAML` section and change the field `spec.template.spec.domain.devices.disks.readonly` to false.
+7. 仮想マシンを編集し、VM ディスクから `readonly: true` フィールドを削除します。`YAML` セクションに移動し、`spec.template.spec.domain.devices.disks.readonly` フィールドを false に変更します。
 
 [source, yaml]
 ----
@@ -109,7 +109,7 @@ image::exercise6/04-step5-1.png[]
 ----
 
 [start=8]
-8. Start again the virtual machine. Check the node where the virtual machine is placed.
+8. 仮想マシンを再起動してください。仮想マシンが配置されているノードを確認してください。
 
 ++++
 <a href="_images/exercise6/05-step8.png" target="_blank" class="popup">
@@ -120,10 +120,10 @@ image::exercise6/05-step8.png[]
 ++++
 
 [start=9]
-9. Migrate virtual machine.
+9. 仮想マシンを移行します。
 
 [start=10]
-10. The virtual machine should be migrated to another node successfully.
+10. 仮想マシンは別のノードへ正常に移行されるはずです。
 
 ++++
 <a href="_images/exercise6/06-step10.png" target="_blank" class="popup">
@@ -134,24 +134,24 @@ image::exercise6/06-step10.png[]
 ++++
 
 
-.Run grade to validate the exercise
+.演習を検証するためにグレードを実行します
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise6
 ----
 
-=== Command line (CLI)
+=== コマンドラインインターフェース (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドで OpenShift サーバー API にログインします。
 
-.OpenShift login command
+.OpenShift login コマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられた namespace-{user} に移動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -159,7 +159,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. Check there is a virtual machine running in this namespace. The output should be similar to the following one: 
+3. このネームスペースで仮想マシンが実行されていることを確認してください。出力は次のようになるはずです。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -172,7 +172,7 @@ exercise6   11m   Running   10.132.2.11   worker-cluster-1   True
 ----
 
 [start=4]
-4. Migrate the virtual machine using the `virtctl` command.
+4. `virtctl`コマンドを使用して仮想マシンを移行します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -180,7 +180,7 @@ virtctl migrate exercise6
 ----
 
 [start=5]
-5. Check the migration status by retreiving the `VirtualMachineInstanceMigration` object. The output should indicate that the migration is in the `Failed` phase.
+5. VirtualMachine Instant Migration`オブジェクトを取得して、移行ステータスを確認してください。出力結果には、移行が`失敗`フェーズにあることが示されるはずです。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -193,7 +193,7 @@ kubevirt-migrate-vm   Failed   exercise6
 ----
 
 [start=6]
-6. Stop the virtual machine.
+6. 仮想マシンを停止します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -201,7 +201,7 @@ virtctl stop exercise6
 ----
 
 [start=7]
-7. Edit the virtual machine and remove the fields `readonly: true` from the VM disks. Change the field `spec.template.spec.domain.devices.disks.readonly` to false.
+7. 仮想マシンを編集し、VM ディスクから `readonly: true` フィールドを削除します。`spec.template.spec.domain.devices.disks.readonly` フィールドを false に変更します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -224,7 +224,7 @@ oc edit vm exercise6
 ----
 
 [start=8]
-8. Start again the virtual machine.
+8. 仮想マシンを再起動してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -232,7 +232,7 @@ virtctl start exercise6
 ----
 
 [start=9]
-9. Check the node where the virtual machine is placed.
+9. 仮想マシンが配置されているノードを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -245,7 +245,7 @@ exercise6   98s   Running   10.132.2.11   worker-cluster-vmnjk-1   True
 ----
 
 [start=10]
-10. Migrate the virtual machine. 
+10. 仮想マシンを移行します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -253,7 +253,7 @@ virtctl migrate exercise6
 ----
 
 [start=11]
-11. Check the migration status by retreiving the `VirtualMachineInstanceMigration` object. Now, the output should indicate that the migration is in the `Succeeded` phase.
+11. `VirtualMachine Instant Migration`オブジェクトを取得して、移行ステータスを確認してください。出力結果には、移行が`Succeeded`フェーズにあることが示されるはずです。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -266,7 +266,7 @@ kubevirt-migrate-vm     Succeeded   exercise6
 ----
 
 [start=12]
-12. Check the node where the vortual machine is now placed
+12. 仮想マシンが現在配置されているノードを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -278,8 +278,8 @@ NAME        AGE     PHASE     IP             NODENAME                 READY
 exercise6   3m50s   Running   10.135.1.196   worker-cluster-vmnjk-3   True
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that virtual machines `readonly` disks attached cannot be live migrated between nodes in OpenShift Virtualization. 
-This limitation occurs because live migration involves creating a new instance of the virtual machine on the target node, 
-which fails due to the RWO disk's single-node access restriction.
+この演習では、OpenShift Virtualization において、読み取り専用ディスクが接続された仮想マシンはノード間でライブマイグレーションできないことを学びました。
+
+この制限は、ライブマイグレーションではターゲットノード上に仮想マシンの新しいインスタンスを作成する必要があるため、RWO ディスクの単一ノードアクセス制限によって失敗します。

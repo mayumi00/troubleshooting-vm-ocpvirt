@@ -1,11 +1,11 @@
 [#scenario]
-= Virtual Machine snapshot restore buttons are grayed out
+= 仮想マシンのスナップショット復元ボタンがグレー表示になっている
 
-== Scenario
+== シナリオ
 
-In this scenario, a Virtual Machine named `exercise7` is currently in the `Running` state and has an existing snapshot the user wants to restore. However, the user has noticed that the snapshot's buttons are grayed out, making it impossible to proceed with the restoration.
+このシナリオでは、`exercise7` という名前の仮想マシンが現在 `Running` 状態にあり、ユーザーが復元したい既存のスナップショットが存在します。しかし、ユーザーはスナップショットのボタンがグレー表示になっていることに気づき、復元を実行できない状態になっています。
 
-- The button on Virtual Machine
+- 仮想マシン上のボタン
 
 ++++
 <a href="_images/exercise7/01-restore-button.png" target="_blank" class="popup">
@@ -15,7 +15,7 @@ image::exercise7/01-restore-button.png[]
 </a>
 ++++
 
-- The snapshot button
+- スナップショットボタン
 
 ++++
 <a href="_images/exercise7/02-restore-button.png" target="_blank" class="popup">
@@ -25,40 +25,41 @@ image::exercise7/02-restore-button.png[]
 </a>
 ++++
 
-Your task is to investigate the steps taken by the user to restore the snapshot and resolve the issue.
+あなたの任務は、ユーザーがスナップショットを復元するために行った手順を調査し、問題を解決することです。
 
-NOTE: The objective is to successfully restore the snapshot of the Virtual Machine `exercise7`.
+NOTE: 目的は、仮想マシン `exercise7` のスナップショットを正常に復元することです。
 
-== Executing the lab script
+== ラボスクリプトの実行
 
-In this exercise setup, ensure you are logged in to OpenShift cluster as user `{user}`.
+この演習設定では、ユーザー `{user}` として OpenShift クラスターにログインしていることを確認してください。
 
-.OpenShift login command
+.OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
-Once connected to the OCP cluster, run the command to break the lab.
+OCP クラスターに接続したら、ラボを中断するコマンドを実行します。
 
-.Breaking the exercise
+.演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise7
 ----
 
-=== Console
-After the break, you can log in to the OpenShift web console using your username and password or continue using the `oc` Command line at bastion to begin the troubleshooting process.
+=== コンソール
+中断後、ユーザー名とパスワードを使用して OpenShift Web コンソールにログインするか、踏み台サーバーで `oc` コマンドラインを使用してトラブルシューティングプロセスを開始できます。
+
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}

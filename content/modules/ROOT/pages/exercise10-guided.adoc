@@ -1,9 +1,9 @@
 [#fix]
-= Enabling VM communication - Part 1
+= 仮想マシン間の通信を有効にする - パート1
 
-== Scenario
+== シナリオ
 
-The virtual machines `exercise10-a` and `exercise10-b` are operational and with their IP addresses correctly configured. However, they are not communicating with each other as expected.
+仮想マシン `exercise10-a` と `exercise10-b` は正常に動作しており、IPアドレスも正しく設定されています。しかし、期待どおりに相互に通信できていません。
 
 ++++
 <a href="_images/exercise10/10-break01.png" target="_blank" class="popup">
@@ -15,31 +15,33 @@ image::exercise10/10-break01.png[]
 
 [NOTE]
 ====
-* Your task is to identify and troubleshoot the issue preventing communication between the VMs. 
-* Resolve it to restore connectivity.
+* 仮想マシン間の通信を妨げている問題を特定し、トラブルシューティングを行うのがあなたのタスクです。
+
+* 接続を回復するために問題を解決してください。
+
 ====
 
-The steps to fix exercise10 are:
+演習10の修正手順は以下のとおりです。
 
-=== Console
-1. Login to Openshift console using the assigned user account
+=== コンソール
+1. 割り当てられたユーザーアカウントを使用してOpenShiftコンソールにログインします。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to virtualization -> Virtual Machines - select project for the assigned user account
+2. virtualization -> Virtual Machinesに移動し、割り当てられたユーザーアカウントのプロジェクトを選択します。
 
 ++++
 <a href="_images/exercise10/10-break02.png" target="_blank" class="popup">
@@ -50,7 +52,7 @@ image::exercise10/10-break02.png[]
 ++++
 
 [start=3]
-3. Click on `exercise10-a` virtual machine, `Configuration` and `Network`, verify it's using `exercise10-nad` as secondary network
+3. 仮想マシン `exercise10-a` をクリックし、`Configuration` と`Network` を選択して、セカンダリネットワークとして `exercise10-nad` が使用されていることを確認します。
 
 ++++
 <a href="_images/exercise10/10-break03.png" target="_blank" class="popup">
@@ -61,7 +63,7 @@ image::exercise10/10-break03.png[]
 ++++
 
 [start=4]
-4. Click on `exercise10-b` virtual machine, `Configuration` and `Network`, verify it's using `exercise10-nad` as secondary network
+4. 仮想マシン `exercise10-b` をクリックし、`Configuration` と`Network` を選択して、セカンダリネットワークとして `exercise10-nad` が使用されていることを確認します。
 
 ++++
 <a href="_images/exercise10/10-break04.png" target="_blank" class="popup">
@@ -72,7 +74,7 @@ image::exercise10/10-break04.png[]
 ++++
 
 [start=5]
-5. On left side menu click `Networking` -> `NetworkAttachmentDefinition`
+5. 左側のメニューで `Networking` → `NetworkAttachmentDefinition` をクリックします。
 
 ++++
 <a href="_images/exercise10/10-break05.png" target="_blank" class="popup">
@@ -83,7 +85,7 @@ image::exercise10/10-break05.png[]
 ++++
 
 [start=6]
-6. Click `exercise10-nad` and check it's using `Linux Bridge`
+6. `exercise10-nad` をクリックし、 `Linux Bridge` が使用されていることを確認します。
 
 ++++
 <a href="_images/exercise10/10-break06.png" target="_blank" class="popup">
@@ -94,7 +96,7 @@ image::exercise10/10-break06.png[]
 ++++
 
 [start=7]
-7. O left side menu click `Networking` -> `NodeNetworkConfigurationPolicy` and verify that it is empty
+7. 左側のメニューで `Networking` →  `NodeNetworkConfigurationPolicy` をクリックし、空欄になっていることを確認します。
 
 ++++
 <a href="_images/exercise10/10-break07.png" target="_blank" class="popup">
@@ -105,7 +107,7 @@ image::exercise10/10-break07.png[]
 ++++
 
 [start=8]
-8. O left side menu click `Networking` -> `NodeNetworkConfiguration` --> click on the `list` button on the top right, and check there's a `linux bridge` interface on nodes
+8. 左側のメニューで `Networking` → `NodeNetworkConfiguration` をクリックし、右上の `list` ボタンをクリックして、ノードに `linux bridge` インターフェースが存在することを確認します。
 
 ++++
 <a href="_images/exercise10/10-break08.png" target="_blank" class="popup">
@@ -116,7 +118,7 @@ image::exercise10/10-break08.png[]
 ++++
 
 [start=9]
-9. Click `linux bridge` -> `br-{user}`
+9. `linux bridge` -> `br-{user}` をクリックします。
 
 ++++
 <a href="_images/exercise10/10-break09.png" target="_blank" class="popup">
@@ -127,8 +129,9 @@ image::exercise10/10-break09.png[]
 ++++
 
 [start=10]
-10. Verify that there are only `veth` interfaces. 
-It means that there is no physical network attached on this `linux bridge`
+10. `veth` インターフェースのみが存在することを確認します。
+
+これは、この `linux bridge` に物理ネットワークが接続されていないことを意味します。
 
 ++++
 <a href="_images/exercise10/10-break10.png" target="_blank" class="popup">
@@ -139,7 +142,8 @@ image::exercise10/10-break10.png[]
 ++++
 
 [start=11]
-11. On left side menu click `Networking` -> `NetworkAttachmentDefinitions` and `Create Network Attachment Definition` button.
+11. 左側のメニューで `Networking` → `NetworkAttachmentDefinitions` をクリックし、`Create Network Attachment Definition` ボタンをクリックします。
+
 
 ++++
 <a href="_images/exercise10/10-break11.png" target="_blank" class="popup">
@@ -150,8 +154,8 @@ image::exercise10/10-break11.png[]
 ++++
 
 [start=12]
-12. Type `exercise10-nad-layer2` as name and select `OVN Kubernetes L2 overlay network` on `Network Type`
-and click on `Create` button
+12. 名前に `exercise10-nad-layer2` と入力し、`Network Type` で `OVN Kubernetes L2 overlay network` を選択します。
+そして `Create` ボタンをクリックします。
 
 ++++
 <a href="_images/exercise10/10-break12.png" target="_blank" class="popup">
@@ -162,7 +166,7 @@ image::exercise10/10-break12.png[]
 ++++
 
 [start=13]
-13. On left side menu click `Virtualization` -> `VirtualMachines` and stop virtual machine `exercise10-a`
+13. 左側のメニューで `Virtualization` → `VirtualMachines` をクリックし、仮想マシン `exercise10-a` を停止します。 
 
 ++++
 <a href="_images/exercise10/10-break13.png" target="_blank" class="popup">
@@ -173,7 +177,7 @@ image::exercise10/10-break13.png[]
 ++++
 
 [start=14]
-14. On left side menu click `Virtualization` -> `VirtualMachines` and stop virtual machine `exercise10-b`
+14. 左側のメニューで `Virtualization` → `VirtualMachines` をクリックし、仮想マシン `exercise10-b` を停止します。
 
 ++++
 <a href="_images/exercise10/10-break14.png" target="_blank" class="popup">
@@ -184,10 +188,10 @@ image::exercise10/10-break14.png[]
 ++++
 
 [start=15]
-15. Click on `exercise10-a` virtual machine, `Configuration` and `Network`, 
+15. 仮想マシン `exercise10-a` をクリックし、 `Configuration` と`Network` をクリックします。
 
 ++++
-<a href="_images/exercise10/10-break15.png" target="_blank" class="popup">
+<a <a href="_images/exercise10/10-break15.png" target="_blank" class="popup">
 ++++
 image::exercise10/10-break15.png[]
 ++++
@@ -195,7 +199,7 @@ image::exercise10/10-break15.png[]
 ++++
 
 [start=16]
-16. Edit the virtual machine network
+16. 仮想マシンのネットワークを編集します。
 
 ++++
 <a href="_images/exercise10/10-break16.png" target="_blank" class="popup">
@@ -206,7 +210,7 @@ image::exercise10/10-break16.png[]
 ++++
 
 [start=17]
-17. Change `Network` from `exercise10-nad` to `exercise10-nad-layer2`
+17. `Network` を `exercise10-nad` から `exercise10-nad-layer2` に変更します。
 
 ++++
 <a href="_images/exercise10/10-break17.png" target="_blank" class="popup">
@@ -217,7 +221,7 @@ image::exercise10/10-break17.png[]
 ++++
 
 [start=18]
-18. Start the virtual machine `exercise10-a`
+18. 仮想マシン `exercise10-a` を起動します。
 
 ++++
 <a href="_images/exercise10/10-break18.png" target="_blank" class="popup">
@@ -227,17 +231,17 @@ image::exercise10/10-break18.png[]
 </a>
 ++++
 
-Repeat steps 15, 16, 17, and 18 for the `exercise10-b` virtual machine
+`exercise10-b`仮想マシンに対して、手順15、16、17、18を繰り返してください。
 
-.Run grade to validate the exercise
+.gradeを実行して演習を検証します。
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise10
 ----
 
-=== Command line (CLI)
+=== コマンドライン (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して`oc`コマンドでOpenShiftサーバーAPIにログインします。
 
 .OpenShift login command
 [source,sh,role=execute,subs="attributes"]
@@ -246,7 +250,7 @@ lab grade exercise10
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられたネームスペース{user}に移動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -254,7 +258,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. List the virtual machines
+3. 仮想マシンの一覧を表示します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -262,7 +266,7 @@ oc get virtualmachine
 ----
 
 [start=4]
-4. Check the virtual machines are running on different nodes
+4. 仮想マシンが異なるノードで実行されていることを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -270,7 +274,7 @@ oc get pods -o wide
 ----
 
 [start=5]
-5. Check communication is not working
+5. 通信が機能していないことを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -279,7 +283,7 @@ virtctl ssh lab-user@exercise10-a \
 ----
 
 [start=6]
-6. Get the secondary network used on vms a and b
+6. 仮想マシン a と b で使用されているセカンダリ ネットワークを取得します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -294,7 +298,7 @@ oc get vmi exercise10-b -n namespace-{user} \
 ----
 
 [start=7]
-7. Get the secondary network yaml
+7. セカンダリネットワークのYAMLを取得します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -302,9 +306,11 @@ oc get network-attachment-definitions.k8s.cni.cncf.io exercise10-nad -o yaml
 ----
 
 [start=8]
-8. Ensure that the NaD (NetworkAttachmentDefinition) is configured to use a `br-{user}` interface. Verify that this `Linux bridge` is not attached to any physical port (one or more veth* port are used), 
-  meaning virtual machines will only be able to communicate if they are running on the same node. 
-  Therefore, you must recreate the NaD to use `layer2` networking instead of `Linux bridge`. Create `layer2-nad.yaml` and apply it.
+8. NaD (NetworkAttachmentDefinition) が正しく設定されていることを確認します`br-{user}` インターフェースを使用しています。この `Linux bridge` が物理ポートに接続されていないことを確認してください (1 つ以上の veth* ポートが使用されています)。
+
+つまり、仮想マシンは同じノードで実行されている場合にのみ通信できます。
+
+したがって、`Linux bridge` の代わりに `layer2` ネットワークを使用するように NaD を再作成する必要があります。`layer2-nad.yaml` を作成して適用してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -321,10 +327,11 @@ vim layer2-nad.yaml
 apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: exercise10-nad-layer2
-  namespace: namespace-{user}
+name: exercise10-nad-layer2
+namespace: namespace-{user}
 spec:
-  config: '{"name":"exercise10-nad-layer2","type":"ovn-k8s-cni-overlay","cniVersion":"0.3.1","topology":"layer2","netAttachDefName":"namespace-{user}/exercise10-nad-layer2"}'
+
+config: '{"name":"exercise10-nad-layer2","type":"ovn-k8s-cni-overlay","cniVersion":"0.3.1","topology":"layer2","netAttachDefName":"namespace-{user}/exercise10-nad-layer2"}'
 ----
 
 [source,sh,role=execute,subs="attributes"]
@@ -333,7 +340,7 @@ oc apply -f layer2-nad.yaml
 ----
 
 [start=9]
-9. shutdown the virtual machines exercise10-a and exercise10-b
+9. 仮想マシン `exercise10-a` と `exercise10-b` をシャットダウンします。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -342,7 +349,7 @@ virtctl stop exercise10-b
 ----
 
 [start=10]
-10. change the virtual machines secondary network
+10. 仮想マシンのセカンダリネットワークを変更します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -357,16 +364,16 @@ oc patch vm exercise10-b -n namespace-{user} --type='json' \
 ----
 
 [start=11]
-11.Start the virtual machines
+11. 仮想マシンを起動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
-virtctl start exercise10-a 
+virtctl start exercise10-a
 virtctl start exercise10-b
 ----
 
 [start=12]
-12. After virtual machines starts wait some time and check the communication again
+12. 仮想マシンが起動したら、しばらく待ってから通信を再度確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -374,7 +381,8 @@ virtctl ssh lab-user@exercise10-a \
 -c 'ping -c 3 192.168.0.11'
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that to enable communication between virtual machines, a secondary network using OVN `layer2` must be configured instead of a `Linux Bridge`. 
-The OVN `localnet` and `Linux Bridge` options are not viable because no `NodeNetworkConfigurationPolicy` has been defined, which means the bridge does not have a physical port attached.
+この演習では、仮想マシン間の通信を有効にするには、Linux Bridgeではなく、OVN `layer2` を使用したセカンダリネットワークを設定する必要があることを学びました。
+
+OVNの `localnet` および `Linux Bridge` オプションは、 `NodeNetworkConfigurationPolicy` が定義されていないため、使用できません。これは、ブリッジに物理ポートが接続されていないことを意味します。

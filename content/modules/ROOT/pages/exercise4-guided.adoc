@@ -1,42 +1,42 @@
 [#fix]
-= Virtual Machine with performance degraded
+= パフォーマンスが低下した仮想マシン
 
-== Scenario
+== シナリオ
 
-In this scenario, a Virtual Machine named `exercise4` is currently in a `running` state. The development team has reported performance issues with an application hosted on this VM.
+このシナリオでは、`exercise4` という名前の仮想マシンが現在 `running` 状態です。開発チームから、この仮想マシン上で稼働しているアプリケーションのパフォーマンス問題が発生しているとの報告がありました。
 
-Your task is to investigate the problem by analyzing the VM’s resource usage, including CPU, memory, and other relevant metrics. You are permitted to adjust the VM's compute resources as needed to resolve the issue; however, a reboot is not permitted.
+あなたのタスクは、CPU、メモリ、その他の関連メトリックを含む仮想マシンのリソース使用状況を分析することで、この問題を調査することです。問題解決のために必要に応じて仮想マシンのコンピューティングリソースを調整することは許可されていますが、再起動は許可されていません。
 
 [NOTE]
 ====
-* The goal is to identify bottlenecks or misconfigurations and implement optimizations to enhance the application's efficiency within the virtualized infrastructure.
-* Do not kill any process running inside the virtual machine
-* Do not reboot the virtual machine
-* The amount of CPU available for the virtual machine in this lab is 4.
+* 目標は、仮想化インフラストラクチャ内でボトルネックや設定ミスを特定し、アプリケーションの効率を向上させるための最適化を実施することです。
+* 仮想マシン内で実行中のプロセスを強制終了しないでください。
+* 仮想マシンを再起動しないでください。
+* このラボで使用する仮想マシンに割り当てられるCPUは4です。
 ====
 
-The steps to fix exercise4 are:
+演習4を修正する手順は以下のとおりです。
 
-=== Console
+=== コンソール
 
-1. Login to OpenShift console using the assigned user account.
+1. 割り当てられたユーザーアカウントを使用して OpenShift コンソールにログインします。
 
-link:{openshift_console_url}[{openshift_console_url}^]
+リンク:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to Virtualization - VirtualMachines - Select the project for the assigned user account
+2. Virtualization から VirtualMachinesへ移動し、割り当てられたユーザーアカウントのプロジェクトを選択してください。
 
 ++++
 <a href="_images/exercise4/04-break03.png" target="_blank" class="popup">
@@ -47,7 +47,7 @@ image::exercise4/04-break03.png[]
 ++++
 
 [start=3]
-3. Go to Virtual Machine details and check the resources being consumed and the Virtual Machine number of CPU's
+3. Virtual Machine detailsへ移動し、消費されているリソースと仮想マシンのCPU数を確認します。
 
 ++++
 <a href="_images/exercise4/04-break04.png" target="_blank" class="popup">
@@ -58,7 +58,7 @@ image::exercise4/04-break04.png[]
 ++++
 
 [start=4]
-4. Click `Configuration` tab and change the `CPU | Memory` 
+4. `Configuration` タブをクリックして、`CPU | Memory` を変更します。
 
 ++++
 <a href="_images/exercise4/04-break05.png" target="_blank" class="popup">
@@ -69,7 +69,7 @@ image::exercise4/04-break05.png[]
 ++++
 
 [start=5]
-5. Change the number of CPU's from 2 to 4 and click `Save`
+5. CPUの数を2から4に変更し、`Save` をクリックしてください。
 
 ++++
 <a href="_images/exercise4/04-break06.png" target="_blank" class="popup">
@@ -80,7 +80,7 @@ image::exercise4/04-break06.png[]
 ++++
 
 [start=7]
-7. Verify the number of CPU's has been changed from 2 to 4.
+7. CPUの数が2から4に変更されていることを確認してください。
 
 ++++
 <a href="_images/exercise4/04-break07.png" target="_blank" class="popup">
@@ -90,24 +90,24 @@ image::exercise4/04-break07.png[]
 </a>
 ++++
 
-.Run grade to validate the exercise
+.演習を検証するためにグレードを実行します
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise4
 ----
 
-=== Command line (CLI)
+=== コマンドラインインターフェース (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドで OpenShift サーバー API にログインします。
 
-.OpenShift login command
+.OpenShift ログインコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 指定されたネームスペース namespace-{user} に移動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -115,7 +115,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. List the virtual machines
+3. 仮想マシンの一覧を表示します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -129,7 +129,7 @@ exercise4   3m29s   Running   True
 ----
 
 [start=4]
-4. List the pods
+4. ポッドをリスト表示します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -143,7 +143,7 @@ virt-launcher-exercise4-lb66m   1/1     Running   0          3m41
 ----
 
 [start=5]
-5. Check the number of CPU's
+5. CPU'sの数を確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -157,7 +157,7 @@ oc get vm exercise4 -n namespace-{user} \
 ----
 
 [start=6]
-6. Validate this information within OS virtual machine
+6. OS仮想マシン内でこの情報を検証します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -171,7 +171,7 @@ Warning: Permanently added 'vmi/exercise4.namespace-{user}' (ED25519) to the lis
 ----
 
 [start=7]
-7. Check the virtual machine is using almost 100% CPU
+7. 仮想マシンがCPUをほぼ100%使用していることを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -185,7 +185,7 @@ virt-launcher-exercise4-lb66m   1993m        1224Mi
 ----
 
 [start=8]
-8. change the virtual machine sockets from 2 to 4
+8. 仮想マシンのソケット数を2から4に変更します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -194,7 +194,7 @@ oc patch vm exercise4 -n namespace-{user} --type='json' \
 ----
 
 [start=9]
-9. check the virtual machine is now running with 4 sockets
+9. 仮想マシンが4つのソケットで実行されていることを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -208,7 +208,7 @@ oc get vm exercise4 -n namespace-{user} \
 ----
 
 [start=10]
-10. Validate this information within OS virtual machine
+10. OS仮想マシン内でこの情報を検証します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -222,7 +222,7 @@ Warning: Permanently added 'vmi/exercise4.namespace-{user}' (ED25519) to the lis
 ----
 
 [start=11]
-11. Command to check the CPU usage on Virtual Machine
+11. 仮想マシンのCPU使用率を確認するコマンドです。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -230,8 +230,10 @@ virtctl ssh lab-user@exercise4 \
 --command "top -b -n 1 | grep 'Cpu(s)' | awk '{print \$2 \"% Used\"}'"
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that when working with a RHEL 9 virtual machine, there is no need to shut down or reboot the VM to modify the CPU configuration. 
-Instead, you can perform a CPU hotplug operation while the VM is running.
-Even without using it in this exercise, it's possible to perform memory hotplug without rebooting the virtual machine as well.
+この演習では、RHEL 9 仮想マシンを操作する際に、CPU 構成を変更するために仮想マシンをシャットダウンまたは再起動する必要がないことを学びました。
+
+代わりに、仮想マシンが実行中の状態で CPU ホットプラグ操作を実行できます。
+
+この演習では使用していませんが、仮想マシンを再起動せずにメモリのホットプラグを実行することも可能です。

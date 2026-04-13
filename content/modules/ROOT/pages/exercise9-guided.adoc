@@ -1,11 +1,12 @@
-[#fix]
-= The VM doesn't stop when shutdown is run inside the guest OS
+[#修正]
+= ゲストOS内でシャットダウンを実行しても仮想マシンが停止しない
 
-== Scenario
+== シナリオ
 
-The virtual machine `exercise9` does not remain powered off after the user executes the `shutdown -h now` command within the guest operating system. Instead, it powers back on automatically a few seconds after the shutdown process completes.
+仮想マシン `exercise9` は、ゲストOS内でユーザーが `shutdown -h now` コマンドを実行しても、シャットダウン状態を維持しません。シャットダウン処理完了後、数秒後に自動的に起動してしまいます。
 
-NOTE: You need to modify the Virtual Machine configuration to ensure it remains in a stopped state after shutdown using guest OS.
+NOTE: ゲストOSを使用してシャットダウンした後も仮想マシンが停止状態を維持するように、仮想マシンの設定を変更する必要があります。
+
 
 ++++
 <a href="_images/exercise9/09-break01.png" target="_blank" class="popup">
@@ -15,34 +16,35 @@ image::exercise9/09-break01.png[]
 </a>
 ++++
 
-The steps to fix exercise9 are:
+exercise9を修正する手順は以下のとおりです。
 
-.Breaking the exercise
+. 演習の中断
 [source,sh,role=execute,subs="attributes"]
 ----
 lab break exercise9
 ----
 
-=== Console
+=== コンソール
 
-1. Login to OpenShift console using the assigned user account.
+1. 割り当てられたユーザーアカウントを使用してOpenShiftコンソールにログインします。
+
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
-.Username
+.ユーザー名
 [source,sh,role=execute,subs="attributes"]
 ----
 {user}
 ----
 
-.Password
+.パスワード
 [source,sh,role=execute,subs="attributes"]
 ----
 {password}
 ----
 
 [start=2]
-2. Go to virtualization -> Virtual Machines - select project for the assigned user account
+2. virtualization -> Virtual Machines に移動し、割り当てられたユーザー アカウントのプロジェクトを選択します。
 
 ++++
 <a href="_images/exercise9/09-break02.png" target="_blank" class="popup">
@@ -53,10 +55,10 @@ image::exercise9/09-break02.png[]
 ++++
 
 [start=3]
-3. Select the `exercise9` virtual machine
+3. `exercise9` 仮想マシンを選択します。
 
 ++++
-<a href="_images/exercise9/09-break03.png" target="_blank" class="popup">
+<a <a href="_images/exercise9/09-break03.png" target="_blank" class="popup">
 ++++
 image::exercise9/09-break03.png[]
 ++++
@@ -64,7 +66,7 @@ image::exercise9/09-break03.png[]
 ++++
 
 [start=4]
-4. Open the virtual machine `Console` tab
+4. 仮想マシンの `Console` タブを開きます。
 
 ++++
 <a href="_images/exercise9/09-break04.png" target="_blank" class="popup">
@@ -75,7 +77,7 @@ image::exercise9/09-break04.png[]
 ++++
 
 [start=5]
-5. Log in with user `lab-user` and password `redhat1`. After that execute the `sudo shutdown -h now` command
+5. ユーザー名 `lab-user` 、パスワード `redhat1` でログインします。その後、`sudo shutdown -h now` コマンドを実行します。
 
 ++++
 <a href="_images/exercise9/09-break05.png" target="_blank" class="popup">
@@ -86,7 +88,7 @@ image::exercise9/09-break05.png[]
 ++++
 
 [start=6]
-6. Verify the virtual machine stopped
+6. 仮想マシンが停止したことを確認します。
 
 ++++
 <a href="_images/exercise9/09-break06.png" target="_blank" class="popup">
@@ -97,7 +99,8 @@ image::exercise9/09-break06.png[]
 ++++
 
 [start=7]
-7. After some seconds the virtual machine will be `Running` again.
+7. 数秒後、仮想マシンは再び `Running` 状態になります。
+
 
 ++++
 <a href="_images/exercise9/09-break07.png" target="_blank" class="popup">
@@ -108,7 +111,7 @@ image::exercise9/09-break07.png[]
 ++++
 
 [start=8]
-8. Open the YAML tab
+8. YAMLタブを開きます
 
 ++++
 <a href="_images/exercise9/09-break08.png" target="_blank" class="popup">
@@ -119,8 +122,8 @@ image::exercise9/09-break08.png[]
 ++++
 
 [start=9]
-9. Verify that `runStrategy` is configured as `Always`
- 
+9. `runStrategy`が`Always`に設定されていることを確認します
+
 ++++
 <a href="_images/exercise9/09-break09.png" target="_blank" class="popup">
 ++++
@@ -130,7 +133,7 @@ image::exercise9/09-break09.png[]
 ++++
 
 [start=10]
-10. Change it to `Manual`
+10. `Manual` に変更します。
 
 ++++
 <a href="_images/exercise9/09-break10.png" target="_blank" class="popup">
@@ -140,24 +143,24 @@ image::exercise9/09-break10.png[]
 </a>
 ++++
 
-.Run grade to validate the exercise
+.grade を実行して演習を検証します。
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise9
 ----
 
-=== Command line (CLI)
+=== コマンドライン (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドで OpenShift サーバー API にログインします。
 
-.OpenShift login command
+.OpenShift loginコマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられたネームスペース{user}に移動します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -165,16 +168,15 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. List the virtual machines
+3. 仮想マシンの一覧を表示します
 
 [source,sh,role=execute,subs="attributes"]
 ----
 oc get vm
 ----
 
-
 [start=4]
-4. Shutdown the virtual machine using OS command
+4. OSコマンドを使用して仮想マシンをシャットダウンします
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -183,7 +185,7 @@ virtctl ssh lab-user@exercise9 \
 ----
 
 [start=5]
-5. Check the virtual machine stopped and started again after a few seconds
+5.仮想マシンが停止し、数秒後に再び起動したことを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -191,7 +193,7 @@ oc get vm
 ----
 
 [start=6]
-6. Edit the virtual machine and change runStrategy from `always` to `manual`
+6. 仮想マシンを編集し、runStrategyを`always`から`manual`に変更します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -199,7 +201,7 @@ oc edit vm exercise9
 ----
 
 [start=7]
-7. Shutdown the virtual machine using OS command again
+7. OSコマンドを使用して仮想マシンを再度シャットダウンします。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -208,13 +210,13 @@ virtctl ssh lab-user@exercise9 \
 ----
 
 [start=8]
-8. Check the virtual machine still stopped
+8. 仮想マシンが停止したままであることを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
 oc get vm
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that when the `runStrategy` is set to `Always`, a virtual machine cannot be powered off directly from the operating system. To power it off, you need to either remove the `runStrategy` configuration or set it to `Manual`.
+この演習では、`runStrategy` が `Always` に設定されている場合、仮想マシンをオペレーティングシステムから直接シャットダウンできないことを学びました。シャットダウンするには、`runStrategy` の設定を削除するか、`Manual` に設定する必要があります。
