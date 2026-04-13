@@ -1,55 +1,51 @@
-* xref:lab-environment.adoc[Lab Environment]
+* xref:lab-environment.adoc[ラボ環境]
 
-* xref:exercise1-break.adoc#break[1. Virtual Machine is not starting - part 1]
-** xref:exercise1-check.adoc#check[1.1. Check your work]
+* xref:exercise1-break.adoc#break[1. 仮想マシンが起動しない - パート1]
+** xref:exercise1-check.adoc#check[1.1. 作業内容の確認]
 
-* xref:exercise2-break.adoc#break[2. Virtual Machine is not starting - part 2]
-** xref:exercise2-check.adoc#check[2.1. Check your work]
+* xref:exercise2-break.adoc#break[2. 仮想マシンが起動しない - パート2]
+** xref:exercise2-check.adoc#check[2.1. 作業内容の確認]
 
-* xref:exercise3-break.adoc#break[3. Application is inaccessible externally]
-** xref:exercise3-check.adoc#check[3.1. Check your work]
+* xref:exercise3-break.adoc#break[3. アプリケーションが外部からアクセスできない]
+** xref:exercise3-check.adoc#check[3.1. 作業内容の確認]
 
-* xref:exercise4-break.adoc#break[4. Virtual Machine with performance degraded]
-** xref:exercise4-check.adoc#check[4.1. Check your work]
+* xref:exercise4-break.adoc#break[4. 仮想マシンのパフォーマンスが低下している]
+** xref:exercise4-check.adoc#check[4.1. [作業内容を確認してください]
 
-* xref:exercise5-break.adoc#break[5. Additional disk unaccessible in Virtual Machine]
-** xref:exercise5-check.adoc#check[5.1. Check your work]
+* xref:exercise5-break.adoc#break[5. 仮想マシンで追加ディスクにアクセスできません]
+** xref:exercise5-check.adoc#check[5.1. 作業内容の確認]
 
-* xref:exercise6-break.adoc#break[6. Virtual Machine cannot be live migrated]
-** xref:exercise6-check.adoc#check[6.1. Check your work]
+* xref:exercise6-break.adoc#break[6. 仮想マシンをライブマイグレーションできません]
+** xref:exercise6-check.adoc#check[6.1. 作業内容の確認]
 
-* xref:exercise7-break.adoc#break[7. Virtual Machine snapshot restore buttons are grayed out]
-** xref:exercise7-check.adoc#check[7.1. Check your work]
+* xref:exercise7-break.adoc#break[7. 仮想マシンのスナップショット復元ボタンがグレー表示されています]
+** xref:exercise7-check.adoc#check[7.1. 作業内容の確認]
 
-* xref:exercise8-break.adoc#break[8. Add a new SSH key to a virtual machine]
-** xref:exercise8-check.adoc#check[8.1. Check your work]
+* xref:exercise8-break.adoc#break[8. 仮想マシンに新しい SSH キーを追加します]
+** xref:exercise8-check.adoc#check[8.1. 作業内容の確認]
 
-* xref:exercise9-break.adoc#break[9. The VM doesn't stop when shutdown is run inside the guest OS]
-** xref:exercise9-check.adoc#check[9.1. Check your work]
+* xref:exercise9-break.adoc#break[9.ゲストOS内でシャットダウンを実行してもVMが停止しない]
+** xref:exercise9-check.adoc#check[9.1. 作業内容の確認]
 
-* xref:exercise10-break.adoc#break[10. Enabling VM communication - Part 1]
-** xref:exercise10-check.adoc#check[10.1. Check your work]
+* xref:exercise10-break.adoc#break[10. VM通信の有効化 - パート1]
+** xref:exercise10-check.adoc#check[10.1. 作業内容の確認]
 
-* xref:exercise11-break.adoc#break[11. Enabling VM communication - Part 2]
-** xref:exercise11-check.adoc#check[11.1. Check your work]
+* xref:exercise11-break.adoc#break[11. VM通信の有効化 - パート2]
+** xref:exercise11-check.adoc#check[11.1. 作業内容の確認]
 
-* xref:exercise12-break.adoc#break[12. Enabling VM communication - Part 3]
-** xref:exercise12-check.adoc#check[12.2. Check your work]
+* xref:exercise12-break.adoc#break[12. VM通信の有効化 - パート3]
+** xref:exercise12-check.adoc#check[12.2. [作業内容の確認]
 
-
-
-
-
-* xref:guidedsolution.adoc[Guided Solution]
-** xref:exercise1-guided.adoc[Exercise 1]
-** xref:exercise2-guided.adoc[Exercise 2]
-** xref:exercise3-guided.adoc[Exercise 3]
-** xref:exercise4-guided.adoc[Exercise 4]
-** xref:exercise5-guided.adoc[Exercise 5]
-** xref:exercise6-guided.adoc[Exercise 6]
-** xref:exercise7-guided.adoc[Exercise 7]
-** xref:exercise8-guided.adoc[Exercise 8]
-** xref:exercise9-guided.adoc[Exercise 9]
-** xref:exercise10-guided.adoc[Exercise 10]
-** xref:exercise11-guided.adoc[Exercise 11]
-** xref:exercise12-guided.adoc[Exercise 12]
+* xref:guidedsolution.adoc[解答例]
+** xref:exercise1-guided.adoc[練習問題1]
+** xref:exercise2-guided.adoc[練習問題2]
+** xref:exercise3-guided.adoc[練習問題3]
+** xref:exercise4-guided.adoc[練習問題4]
+** xref:exercise5-guided.adoc[練習問題5]
+** xref:exercise6-guided.adoc[練習問題6]
+** xref:exercise7-guided.adoc[練習問題7]
+** xref:exercise8-guided.adoc[練習問題8]
+** xref:exercise9-guided.adoc[練習問題9]
+** xref:exercise10-guided.adoc[演習10]
+** xref:exercise11-guided.adoc[演習11]
+** xref:exercise12-guided.adoc[演習12]
