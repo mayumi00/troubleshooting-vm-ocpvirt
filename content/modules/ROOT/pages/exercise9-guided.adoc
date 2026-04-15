@@ -122,7 +122,7 @@ image::exercise9/09-break08.png[]
 ++++
 
 [start=9]
-9. `runStrategy`が`Always`に設定されていることを確認します
+9. `runStrategy` が `Always` に設定されていることを確認します
 
 ++++
 <a href="_images/exercise9/09-break09.png" target="_blank" class="popup">
@@ -193,7 +193,7 @@ oc get vm
 ----
 
 [start=6]
-6. 仮想マシンを編集し、runStrategyを`always`から`manual`に変更します。
+6. 仮想マシンを編集し、runStrategyを `always` から `manual` に変更します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
