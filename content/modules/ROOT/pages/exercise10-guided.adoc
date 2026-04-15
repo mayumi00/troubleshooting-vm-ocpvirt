@@ -41,7 +41,7 @@ link:{openshift_console_url}[{openshift_console_url}^]
 ----
 
 [start=2]
-2. virtualization -> Virtual Machinesに移動し、割り当てられたユーザーアカウントのプロジェクトを選択します。
+2. `Virtualization` → `VirtualMachines` に移動し、割り当てられたユーザーアカウントのプロジェクトを選択します。
 
 ++++
 <a href="_images/exercise10/10-break02.png" target="_blank" class="popup">
@@ -52,7 +52,7 @@ image::exercise10/10-break02.png[]
 ++++
 
 [start=3]
-3. 仮想マシン `exercise10-a` をクリックし、`Configuration` と`Network` を選択して、セカンダリネットワークとして `exercise10-nad` が使用されていることを確認します。
+3. 仮想マシン `exercise10-a` をクリックし、`Configuration` と `Network` を選択して、セカンダリネットワークとして `exercise10-nad` が使用されていることを確認します。
 
 ++++
 <a href="_images/exercise10/10-break03.png" target="_blank" class="popup">
@@ -63,7 +63,7 @@ image::exercise10/10-break03.png[]
 ++++
 
 [start=4]
-4. 仮想マシン `exercise10-b` をクリックし、`Configuration` と`Network` を選択して、セカンダリネットワークとして `exercise10-nad` が使用されていることを確認します。
+4. 仮想マシン `exercise10-b` をクリックし、`Configuration` と `Network` を選択して、セカンダリネットワークとして `exercise10-nad` が使用されていることを確認します。
 
 ++++
 <a href="_images/exercise10/10-break04.png" target="_blank" class="popup">
@@ -188,7 +188,7 @@ image::exercise10/10-break14.png[]
 ++++
 
 [start=15]
-15. 仮想マシン `exercise10-a` をクリックし、 `Configuration` と`Network` をクリックします。
+15. 仮想マシン `exercise10-a` をクリックし、 `Configuration` と `Network` をクリックします。
 
 ++++
 <a <a href="_images/exercise10/10-break15.png" target="_blank" class="popup">
@@ -231,7 +231,7 @@ image::exercise10/10-break18.png[]
 </a>
 ++++
 
-`exercise10-b`仮想マシンに対して、手順15、16、17、18を繰り返してください。
+仮想マシン `exercise10-b` に対して、手順15、16、17、18を繰り返してください。
 
 .gradeを実行して演習を検証します。
 [source,sh,role=execute,subs="attributes"]
@@ -241,7 +241,7 @@ lab grade exercise10
 
 === コマンドライン (CLI)
 
-1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して`oc`コマンドでOpenShiftサーバーAPIにログインします。
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドでOpenShiftサーバーAPIにログインします。
 
 .OpenShift login command
 [source,sh,role=execute,subs="attributes"]
@@ -283,7 +283,7 @@ virtctl ssh lab-user@exercise10-a \
 ----
 
 [start=6]
-6. 仮想マシン a と b で使用されているセカンダリ ネットワークを取得します。
+6. 仮想マシン `exercise10-a` と `exercise10-b` で使用されているセカンダリ ネットワークを取得します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -306,7 +306,7 @@ oc get network-attachment-definitions.k8s.cni.cncf.io exercise10-nad -o yaml
 ----
 
 [start=8]
-8. NaD (NetworkAttachmentDefinition) が正しく設定されていることを確認します`br-{user}` インターフェースを使用しています。この `Linux bridge` が物理ポートに接続されていないことを確認してください (1 つ以上の veth* ポートが使用されています)。
+8. NaD (NetworkAttachmentDefinition) が正しく設定されていることを確認します `br-{user}` インターフェースを使用しています。この `Linux bridge` が物理ポートに接続されていないことを確認してください (1 つ以上の veth* ポートが使用されています)。
 
 つまり、仮想マシンは同じノードで実行されている場合にのみ通信できます。
 
