@@ -47,7 +47,7 @@ image::exercise11/11-break3.png[]
 
 == ラボスクリプトの実行
 
-この演習では、ユーザー`{user}`としてOpenShiftクラスタにログインしていることを確認してください。
+この演習では、ユーザー `{user}` としてOpenShiftクラスタにログインしていることを確認してください。
 
 .OpenShift loginコマンド
 [source,sh,role=execute,subs="attributes"]
@@ -65,7 +65,7 @@ lab break exercise11
 ----
 
 === コンソール
-休憩後、ユーザー名とパスワードを使用してOpenShift Webコンソールにログインするか、踏み台サーバーの`oc`コマンドラインを使用してトラブルシューティングプロセスを開始できます。
+休憩後、ユーザー名とパスワードを使用してOpenShift Webコンソールにログインするか、踏み台サーバーの `oc` コマンドラインを使用してトラブルシューティングプロセスを開始できます。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
