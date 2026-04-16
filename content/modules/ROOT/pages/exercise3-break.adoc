@@ -34,7 +34,7 @@ lab break exercise3
 ----
 
 === コンソール
-中断後、ユーザー名とパスワードを使用してOpenShift Webコンソールにログインするか、踏み台サーバーで`oc`コマンドラインを使用してトラブルシューティングプロセスを開始できます。
+中断後、ユーザー名とパスワードを使用してOpenShift Webコンソールにログインするか、踏み台サーバーで `oc` コマンドラインを使用してトラブルシューティングプロセスを開始できます。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
