@@ -16,14 +16,13 @@ image::exercise12/12-break01.png[]
 [NOTE]
 ====
 * 仮想マシン間の通信を妨げている問題を特定し、トラブルシューティングしてください。
-
 * ポート80への接続を復元するために問題を解決してください。
 * `subnet` は `NetworkAttachmentDefinitions` で定義されています。仮想マシンのIPアドレスを確認してください。
 ====
 
 == ラボスクリプトの実行
 
-この演習設定では、ユーザー`{user}`としてOpenShiftクラスタにログインしていることを確認してください。
+この演習設定では、ユーザー `{user}` としてOpenShiftクラスタにログインしていることを確認してください。
 
 .OpenShift loginコマンド
 [source,sh,role=execute,subs="attributes"]
@@ -41,7 +40,7 @@ lab break exercise12
 ----
 
 === コンソール
-中断後、ユーザー名とパスワードを使用してOpenShift Webコンソールにログインするか、踏み台サーバーの`oc`コマンドラインを使用してトラブルシューティングプロセスを開始できます。
+中断後、ユーザー名とパスワードを使用してOpenShift Webコンソールにログインするか、踏み台サーバーの `oc` コマンドラインを使用してトラブルシューティングプロセスを開始できます。
 
 link:{openshift_console_url}[{openshift_console_url}^]
 
