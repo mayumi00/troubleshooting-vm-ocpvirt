@@ -40,8 +40,8 @@ image::exercise11/11-break3.png[]
 
 [NOTE]
 ====
-* 仮想マシン間の通信を妨げている問題を特定し、トラブルシューティングを行うのがあなたのタスクです。問題を解決して接続を復旧させてください。
-* 必要に応じて仮想マシンを再作成できます
+* あなたのタスクは、仮想マシン間の通信を妨げている問題を特定し、トラブルシューティングを行うことです。問題を解決して接続を復旧させてください。
+* 必要に応じてを再作成できます
 * ゲストOS内部のファイルは一切編集しないでください
 ====
 
@@ -65,7 +65,7 @@ link:{openshift_console_url}[{openshift_console_url}^]
 ----
 
 [start=1]
-1. Virtualization - VirtualMachines に移動し、仮想マシンのIPアドレスを確認します。
+1. Virtualization - VirtualMachines に移動し、のIPアドレスを確認します。
 
 ++++
 <a href="_images/exercise11/11-break0.png" target="_blank" class="popup">
@@ -98,7 +98,7 @@ image::exercise11/11-break2.png[]
 ++++
 
 [start=4]
-4. `exercise11-a` 仮想マシンをクリックします。コンソールを開き、ユーザー名 `lab-user` 、パスワード `redhat1` でログインしてください。
+4. 仮想マシン `exercise11-a` をクリックします。コンソールを開き、ユーザー名 `lab-user` 、パスワード `redhat1` でログインしてください。
 pingを実行して、動作しないことを確認してください。
 
 ++++
@@ -110,7 +110,7 @@ image::exercise11/11-break4.png[]
 ++++
 
 [start=5]
-5. 仮想マシン `exercise11-a` で、 `Configuration` → `Initial run` をクリックします。
+5.  `exercise11-a` で、 `Configuration` → `Initial run` をクリックします。
 
 ++++
 <a href="_images/exercise11/11-break5.png" target="_blank" class="popup">
@@ -143,7 +143,7 @@ image::exercise11/11-break7.png[]
 ++++
 
 [start=8]
-8. `exercise11-b` 仮想マシンに対しても同じ手順を実行し、このIPアドレスが/32ネットマスクを使用して誤って設定されていることを確認します。この設定を修正する必要があります。
+8.  `exercise11-b` に対しても同じ手順を実行し、このIPアドレスが/32ネットマスクを使用して誤って設定されていることを確認します。この設定を修正する必要があります。
 
 
 ++++
@@ -155,7 +155,7 @@ image::exercise11/11-break8.png[]
 ++++
 
 [start=9]
-9. YAMLタブをクリックし、YAMLファイルをダウンロードしてください。このファイルは、正しいネットマスクを使用して仮想マシンを再作成するために使用されます。
+9. YAMLタブをクリックし、YAMLファイルをダウンロードしてください。このファイルは、正しいネットマスクを使用してを再作成するために使用されます。
 
 
 
@@ -168,7 +168,7 @@ image::exercise11/11-break9.png[]
 ++++
 
 [start=10]
-10. `Actions` -> `Stop` -> `Actions` -> `Delete` をクリックして、`exercise11-b` 仮想マシンを削除します。
+10. `Actions` -> `Stop` で仮想マシンを停止し、次に `Actions` -> `Delete` をクリックして、仮想マシン `exercise11-b` を削除します。
 
 ++++
 <a href="_images/exercise11/11-break10.png" target="_blank" class="popup">
@@ -202,7 +202,7 @@ image::exercise11/11-break12.png[]
 ++++
 
 [start=13]
-13. 手順9でダウンロードしたYAMLファイルを使用して新しい仮想マシンを作成するには、`+` --> `Import YAML` ボタンをクリックします。
+13. 手順9でダウンロードしたYAMLファイルを使用して新しい仮想マシンを作成するには、`+` → `Import YAML` ボタンをクリックします。
 
 ++++
 <a href="_images/exercise11/11-break13.png" target="_blank" class="popup">
@@ -327,7 +327,7 @@ vim exercise11-b.yaml
 ----
 
 [start=10]
-10. exercise11-b 仮想マシンを削除します
+10. 仮想マシン `exercise11-b` を削除します
 
 [source,sh,role=execute,subs="attributes"]
 ----
