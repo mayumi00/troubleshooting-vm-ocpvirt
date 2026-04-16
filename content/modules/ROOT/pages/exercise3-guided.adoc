@@ -91,9 +91,11 @@ image::exercise3/05-step6.png[]
 ++++
 
 [start=7]
-7. ポッドからサービスのIPアドレスとポート（80）に対して`curl`コマンドを実行してみてください。
+7. ポッドからサービスのIPアドレスとポート（80）に対して `curl` コマンドを実行してみてください。
 
 [source,sh,role=execute,subs="attributes"]
+
+NOTE: `IPアドレス`は手順5で確認したものに置き換えてください。
 ----
 curl 172.31.155.175:80
 ----
@@ -144,7 +146,7 @@ lab grade exercise3
 
 === Command line (CLI)
 
-1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して`oc`コマンドでOpenshiftサーバーAPIにログインします。
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して　`oc`　コマンドでOpenshiftサーバーAPIにログインします。
 
 .OpenShiftログインコマンド
 [source,sh,role=execute,subs="attributes"]
