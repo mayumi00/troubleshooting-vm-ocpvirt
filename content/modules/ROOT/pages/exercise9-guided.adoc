@@ -18,12 +18,6 @@ image::exercise9/09-break01.png[]
 
 exercise9を修正する手順は以下のとおりです。
 
-. 演習の中断
-[source,sh,role=execute,subs="attributes"]
-----
-lab break exercise9
-----
-
 === コンソール
 
 1. 割り当てられたユーザーアカウントを使用してOpenShiftコンソールにログインします。
