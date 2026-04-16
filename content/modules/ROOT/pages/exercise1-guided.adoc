@@ -97,7 +97,7 @@ image::exercise1/03-step7.png[]
 ++++
 
 [start=8]
-8. 仮想マシンが起動するまで待ち、仮想マシンが「実行中」状態になっていることを確認します。
+8. 仮想マシンが起動するまで待ち、仮想マシンが `Running` 状態になっていることを確認します。
 
 ++++
 <a href="_images/exercise1/04-step8.png" target="_blank" class="popup">
