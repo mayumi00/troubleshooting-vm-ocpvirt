@@ -5,7 +5,7 @@
 
 ユーザーから、`exercise5` 仮想マシンに追加したディスクが、`fdisk` コマンドまたは `lsblk` コマンドを実行してもリストに表示されないという報告がありました。ユーザーは、`exercise5-vol-data1` という名前のディスクを作成し、それを `exercise5` という名前の仮想マシンにマウントしたいと考えています。
 
-注: ユーザーが `lsblk` コマンドまたは `fdisk` コマンドを実行した際に `exercise5-vol-data1` ディスクが表示されるように、問題のトラブルシューティングと解決を行ってください。
+NOTE: ユーザーが `lsblk` コマンドまたは `fdisk` コマンドを実行した際に `exercise5-vol-data1` ディスクが表示されるように、問題のトラブルシューティングと解決を行ってください。
 
 演習5を修正する手順は以下のとおりです。
 
@@ -29,7 +29,7 @@ link:{openshift_console_url}[{openshift_console_url}^]
 ----
 
 [start=2]
-2. Virtualization から VirtualMachines に移動して、割り当てられたユーザーアカウントのプロジェクトを選択してください。`exercise5`という名前のVMを探してください。
+2. Virtualization から VirtualMachines に移動して、割り当てられたユーザーアカウントのプロジェクトを選択してください。`exercise5` という名前のVMを探してください。
 ++++
 <a href="_images/exercise5/05-break01.png" target="_blank" class="popup">
 ++++
@@ -39,7 +39,7 @@ image::exercise5/05-break01.png[]
 ++++
 
 [start=3]
-3. `exercise5`仮想マシンで、`Configuration` -> `Storage` をクリックし、追加のディスクがあることを確認してください。
+3. `exercise5` 仮想マシンで、`Configuration` -> `Storage` をクリックし、追加のディスクがあることを確認してください。
 ++++
 <a href="_images/exercise5/05-break02.png" target="_blank" class="popup">
 ++++
@@ -199,7 +199,7 @@ oc get datavolume
 ----
 
 [start=5]
-4. 追加データディスク `exercise5-vol-data1` に`PersistentVolumeClaims` が関連付けられていないことを確認してください。
+4. 追加データディスク `exercise5-vol-data1` に `PersistentVolumeClaims` が関連付けられていないことを確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -223,7 +223,7 @@ oc delete datavolume exercise5-vol-data1
 ----
 
 [start=8]
-8. `ocs-storagecluster-ceph-rbd`の`storageClassName`を使用して、名前を`exercise5-vol-data1`、サイズを30GiBとして、DataVolumeを再度作成します。
+8. `ocs-storagecluster-ceph-rbd` の `storageClassName` を使用して、名前を `exercise5-vol-data1`、サイズを30GiBとして、DataVolumeを再度作成します。
 
 [source,sh,role=execute]
 ----
@@ -253,7 +253,7 @@ watch oc get pvc
 ----
 
 [start=10]
-10. exercise5の仮想マシンコンソールに移動し、ラボユーザーの認証情報を使用してログインしてください。
+10. `exercise5` の仮想マシンコンソールに移動し、ラボユーザーの認証情報を使用してログインしてください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
