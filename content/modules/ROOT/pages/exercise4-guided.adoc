@@ -143,7 +143,7 @@ virt-launcher-exercise4-lb66m   1/1     Running   0          3m41
 ----
 
 [start=5]
-5. CPU'sの数を確認します。
+5. CPUの数を確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
