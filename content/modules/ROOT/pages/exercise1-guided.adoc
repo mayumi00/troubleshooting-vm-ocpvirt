@@ -222,7 +222,7 @@ virtctl restart exercise1
 ----
 
 [start=8]
-8. 仮想マシンが起動するまで待ち、`running`状態になっていることを確認します
+8. 仮想マシンが起動するまで待ち、`running` 状態になっていることを確認します
 
 [source,sh,role=execute,subs="attributes"]
 ----
