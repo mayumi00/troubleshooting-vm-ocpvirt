@@ -55,7 +55,7 @@ image::exercise9/09-break02.png[]
 ++++
 
 [start=3]
-3. `exercise9` 仮想マシンを選択します。
+3. 仮想マシン `exercise9` を選択します。
 
 ++++
 <a <a href="_images/exercise9/09-break03.png" target="_blank" class="popup">
