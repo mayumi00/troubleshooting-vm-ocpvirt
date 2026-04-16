@@ -69,7 +69,7 @@ image::exercise6/03-step4.png[]
 ++++
 
 [start=5]
-5. 根本原因を特定するために、`virt-launcher-exercise6`ポッドのログを調べてください。
+5. 根本原因を特定するために、`virt-launcher-exercise6` ポッドのログを調べてください。
 
 ** 割り当てられたユーザーアカウントのプロジェクトに移動し、失敗したポッドを探してください。
 
@@ -172,7 +172,7 @@ exercise6   11m   Running   10.132.2.11   worker-cluster-1   True
 ----
 
 [start=4]
-4. `virtctl`コマンドを使用して仮想マシンを移行します。
+4. `virtctl` コマンドを使用して仮想マシンを移行します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -180,7 +180,7 @@ virtctl migrate exercise6
 ----
 
 [start=5]
-5. VirtualMachine Instant Migration`オブジェクトを取得して、移行ステータスを確認してください。出力結果には、移行が`失敗`フェーズにあることが示されるはずです。
+5. `VirtualMachine Instant Migration` オブジェクトを取得して、移行ステータスを確認してください。出力結果には、移行が `Failed` フェーズにあることが示されるはずです。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -253,7 +253,7 @@ virtctl migrate exercise6
 ----
 
 [start=11]
-11. `VirtualMachine Instant Migration`オブジェクトを取得して、移行ステータスを確認してください。出力結果には、移行が`Succeeded`フェーズにあることが示されるはずです。
+11. `VirtualMachine Instant Migration` オブジェクトを取得して、移行ステータスを確認してください。出力結果には、移行が `Succeeded` フェーズにあることが示されるはずです。
 
 [source,sh,role=execute,subs="attributes"]
 ----
