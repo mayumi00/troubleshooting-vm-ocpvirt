@@ -39,7 +39,7 @@ link:{openshift_console_url}[{openshift_console_url}^]
 ----
 
 [start=2]
-2.  virtualization -> Virtual Machines に移動し、割り当てられたユーザーアカウントのプロジェクトを選択します。
+2.  `virtualization` -> `Virtual Machines` に移動し、割り当てられたユーザーアカウントのプロジェクトを選択します。
 
 ++++
 <a href="_images/exercise12/12-break02.png" target="_blank" class="popup">
@@ -50,7 +50,7 @@ image::exercise12/12-break02.png[]
 ++++
 
 [start=3]
-3. `exercise-12-a` 仮想マシンのIPアドレスを確認します。
+3. 仮想マシン `exercise-12-a` のIPアドレスを確認します。
 
 ++++
 <a href="_images/exercise12/12-break03.png" target="_blank" class="popup">
@@ -61,7 +61,7 @@ image::exercise12/12-break03.png[]
 ++++
 
 [start=4]
-4. `exercise-12-b` 仮想マシンのIPアドレスを確認します。
+4. 仮想マシン `exercise-12-b` のIPアドレスを確認します。
 
 ++++
 <a href="_images/exercise12/12-break04.png" target="_blank" class="popup">
@@ -72,7 +72,7 @@ image::exercise12/12-break04.png[]
 ++++
 
 [start=5]
-5. `Virtualization` -> `Virtual Machines` メニューで、`exercise12-a` 仮想マシンをクリックし、その `Console` を開きます。
+5. `Virtualization` -> `Virtual Machines` メニューで、仮想マシン `exercise12-a` をクリックし、その `Console` を開きます。
 `exercise12-b` のIPアドレス、ポート80で通信が機能していないことを確認します。
 
 ++++
@@ -106,7 +106,7 @@ image::exercise12/12-break07.png[]
 ++++
 
 [start=8]
-8. 左側のメニューで、`Networking` -> `NetworkPolicies` -> `MultiNetworkPolicies` をクリックし、`allow-80-on-exercise12` をクリックして、その YAML を確認してください。 `from` のラベルが `exercise12-b` 仮想マシンとして設定されていることを確認してください。
+8. 左側のメニューで、`Networking` -> `NetworkPolicies` -> `MultiNetworkPolicies` をクリックし、`allow-80-on-exercise12` をクリックして、その YAML を確認してください。 `from` のラベルが 仮想マシン `exercise12-b` として設定されていることを確認してください。
 
 ++++
 <a href="_images/exercise12/12-break08.png" target="_blank" class="popup">
@@ -128,7 +128,7 @@ image::exercise12/12-break09.png[]
 ++++
 
 [start=10]
-10. `exercise12-a` 仮想マシンの `Console` から接続をテストすると、正常に動作するはずです。
+10. 仮想マシン `exercise12-a` の `Console` から接続をテストすると、正常に動作するはずです。
 
 
 ++++
@@ -172,7 +172,7 @@ oc get virtualmachine
 ----
 
 [start=4]
-4. exercise12-a の IP アドレスを取得します。
+4. `exercise12-a` の IP アドレスを取得します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -181,7 +181,7 @@ oc get vmi exercise12-a -n namespace-{user} \
 ----
 
 [start=5]
-5. exercise12-b の IP アドレスを取得します
+5. `exercise12-b` の IP アドレスを取得します
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -190,10 +190,10 @@ oc get vmi exercise12-b -n namespace-{user} \
 ----
 
 [start=6]
-6. 仮想マシン exercise12-b 上で実行されているアプリケーションに IP アドレスを使用してアクセスし、動作しないことを確認します。
+6. 仮想マシン `exercise12-b` 上で実行されているアプリケーションに IP アドレスを使用してアクセスし、動作しないことを確認します。
 
 
-NOTE:  手順5で定義した値にIPアドレスを変更することを忘れないでください。
+NOTE:  `IP` の部分を、手順5で定義した値にIPアドレスを変更することを忘れないでください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -239,7 +239,7 @@ spec:
 ----
 
 [start=9]
-9. マルチネットワークポリシー `allow-80-on-exercise12` が、`exercise12-b` 仮想マシンからのすべての接続のみを許可していることを確認します。
+9. マルチネットワークポリシー `allow-80-on-exercise12` が、仮想マシン `exercise12-b` からのすべての接続のみを許可していることを確認します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -296,7 +296,7 @@ spec:
 ----
 
 [start=11]
-11. 仮想マシン exercise12-a が接続元になるように、multi-networkpolicy を編集し、ラベルの内容を `exercise12-a` に変更してください。
+11. 仮想マシン `exercise12-a` が接続元になるように、multi-networkpolicy を編集し、ラベルの内容を `exercise12-a` に変更してください。
 
 
 [source,sh,role=execute,subs="attributes"]
@@ -306,10 +306,10 @@ allow-80-on-exercise12
 ----
 
 [start=12]
-12. 仮想マシン exercise12-b 上で実行されているアプリケーションに IP アドレスを使用してアクセスし、正常に動作することを確認してください。
+12. 仮想マシン `exercise12-b` 上で実行されているアプリケーションに IP アドレスを使用してアクセスし、正常に動作することを確認してください。
 
 
-NOTE: 手順5で定義した値にIPアドレスを変更することを忘れないでください。
+NOTE:  `IP` の部分を、手順5で定義した値にIPアドレスを変更することを忘れないでください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
