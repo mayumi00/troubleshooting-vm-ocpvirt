@@ -63,7 +63,7 @@ image::exercise7/07-break03.png[]
 ++++
 
 [start=3]
-3. `exercise7`仮想マシンを停止します。
+3. 仮想マシン `exercise7` を停止します。
 
 ++++
 <a href="_images/exercise7/07-break04.png" target="_blank" class="popup">
@@ -74,7 +74,7 @@ image::exercise7/07-break04.png[]
 ++++
 
 [start=4]
-4. `exercise7` 仮想マシンをクリックし、`Snapshot` タブを選択します。
+4. 仮想マシン `exercise7` をクリックし、`Snapshot` タブを選択します。
 
 ++++
 <a href="_images/exercise7/07-break05.png" target="_blank" class="popup">
@@ -117,24 +117,24 @@ image::exercise7/07-break08.png[]
 </a>
 ++++
 
-.Run grade to validate the exercise
+.演習を検証するために、gradeを実行します。
 [source,sh,role=execute,subs="attributes"]
 ----
 lab grade exercise7
 ----
 
-=== Command line (CLI)
+=== コマンドライン (CLI)
 
-1. Login to Openshift server API using the assigned user account with `oc` command if not logged in.
+1. ログインしていない場合は、割り当てられたユーザーアカウントを使用して `oc` コマンドで OpenShift サーバー API にログインします。
 
-.OpenShift login command
+.OpenShift login コマンド
 [source,sh,role=execute,subs="attributes"]
 ----
 {login_command}
 ----
 
 [start=2]
-2. Go to the assigned namespace-{user}
+2. 割り当てられたネームスペース {user} に移動します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -142,7 +142,7 @@ oc project namespace-{user}
 ----
 
 [start=3]
-3. Stop the virtual machine `exercise7`
+3. 仮想マシン `exercise7` を停止します。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -155,7 +155,7 @@ VM exercise7 was scheduled to stop
 ----
 
 [start=4]
-4. Restore the virtual machine snapshot. In the {user} home directory there's `exercise7-restoresnapshot.yaml` file. Check it.
+4. 仮想マシンのスナップショットを復元します。ユーザーのホームディレクトリに `exercise7-restoresnapshot.yaml` ファイルがあります。確認してください。
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -163,7 +163,7 @@ cat /home/{user}/exercise7-restoresnapshot.yaml
 ----
 
 [start=5]
-5. Apply it 
+5. 適用する
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -176,7 +176,7 @@ virtualmachinerestore.snapshot.kubevirt.io/restore-exercise7-snapshot created
 ----
 
 [start=6]
-6. Check that VirtualMachineRestore has been created
+6. VirtualMachineRestore が作成されていることを確認する
 
 [source,sh,role=execute,subs="attributes"]
 ----
@@ -190,6 +190,6 @@ NAME                         TARGETKIND       TARGETNAME   COMPLETE   RESTORETIM
 restore-exercise7-snapshot   VirtualMachine   exercise7    true       38s
 ----
 
-=== What you learned
+=== 学習内容
 
-In this exercise, you learned that restoring a snapshot of a virtual machine requires shutting it down, as KubeVirt does not support memory snapshots.
+この演習では、仮想マシンのスナップショットを復元するには、仮想マシンをシャットダウンする必要があることを学びました。KubeVirtはメモリ スナップショットをサポートしていないためです。
