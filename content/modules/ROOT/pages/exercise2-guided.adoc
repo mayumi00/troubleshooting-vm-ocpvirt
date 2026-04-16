@@ -88,7 +88,7 @@ message: '0/6 nodes are available: 3 node(s) didn''t match Pod''s node affinity/
 
 
 [start=8]
-8. 仮想マシンが起動するまで待ち、仮想マシンが` Running` 状態になっていることを確認してください。
+8. 仮想マシンが起動するまで待ち、仮想マシンが `Running` 状態になっていることを確認してください。
 
 ++++
 <a href="_images/exercise2/03-step8.png" target="_blank" class="popup">
