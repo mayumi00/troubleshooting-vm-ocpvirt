@@ -1,3 +1,12 @@
+
+== 日本語化の方法
+環境のBastion端末にSSHログイン後、端末で以下のコマンドを実行ください。
+
+[source,bash,role=execute,subs="attributes"]
+----
+curl -sSL https://raw.githubusercontent.com/mayumi00/troubleshooting-vm-ocpvirt/refs/heads/main/translation.sh | bash
+----
+
 === Getting Started
 
 This template is designed to be used as a base for your showroom lab guides.
